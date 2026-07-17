@@ -1,0 +1,78 @@
+@import "@fontsource/jetbrains-mono/400.css";
+@import "@fontsource/jetbrains-mono/500.css";
+@import "@fontsource/jetbrains-mono/700.css";
+
+.agentic-terminal {
+  --terminal-bg: #0a0a0a;
+  --terminal-panel: #141414;
+  --terminal-raised: #1e1e1e;
+  --terminal-border: #282828;
+  --terminal-border-strong: #3c3c3c;
+  --terminal-text: #eeeeee;
+  --terminal-muted: #808080;
+  --terminal-dim: #606060;
+  --terminal-primary: #fab283;
+  --terminal-primary-hover: #ffc09f;
+  --terminal-secondary: #5c9cf5;
+  --terminal-accent: #9d7cd8;
+  --terminal-error: #e06c75;
+  --terminal-success: #7fd88f;
+  --terminal-info: #56b6c2;
+  --terminal-warn: #e5c07b;
+  --terminal-file: #828bb8;
+  --terminal-diff-add-fg: #4fd6be;
+  --terminal-diff-add-bg: #20303b;
+  --terminal-diff-del-fg: #e26a75;
+  --terminal-diff-del-bg: #37222c;
+
+  --terminal-scrubber-past: #4a5c50;
+  --terminal-feed-divider: #161616;
+  --terminal-overlay: #0f0f0f;
+  --terminal-timestamp: #484848;
+  --terminal-body-user: #c9c9c9;
+  --terminal-body-agent: #d6d6d6;
+  --terminal-content: #c9c9c9;
+  --terminal-code-keyword: #d6d6d6;
+  --terminal-subtle-text: #b8b8b8;
+  --terminal-plan-done: #b8b8b8;
+  --terminal-flow-label: #a0a0a0;
+  --terminal-line-number: #484848;
+  --terminal-flow-done: #3f5c48;
+  --terminal-flow-handoff: #2f4a52;
+  --terminal-flow-handoff-review: #4a3f5c;
+  --terminal-viewer-shadow: -16px 0 40px rgba(0,0,0,.55);
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  min-height: 0;
+  width: 100%;
+  overflow: hidden;
+  background: var(--terminal-bg);
+  color: var(--terminal-text);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 13px;
+  font-weight: 400;
+}
+
+@keyframes terminal-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+
+@keyframes terminal-blink {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}

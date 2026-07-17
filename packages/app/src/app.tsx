@@ -58,6 +58,7 @@ import { createSessionLineage } from "@/pages/session/session-lineage"
 
 import { SessionPage, SessionRouteErrorBoundary, TargetSessionRouteContent } from "@/pages/session"
 import { NewHome, LegacyHome } from "@/pages/home"
+import AgenticTerminalRoute from "@/pages/agentic-terminal"
 
 const NewSession = lazy(() => import("@/pages/new-session"))
 
@@ -193,6 +194,18 @@ function DraftRoute() {
         )}
       </Show>
     </Show>
+  )
+}
+
+function LegacyAgenticTerminalRoute() {
+  return (
+    <ServerKey>
+      <ServerSDKProvider>
+        <ServerSyncProvider>
+          <AgenticTerminalRoute />
+        </ServerSyncProvider>
+      </ServerSDKProvider>
+    </ServerKey>
   )
 }
 
@@ -592,8 +605,12 @@ function Routes(props: { serverScoped?: JSX.Element }) {
           <Route path="/session/:id?" component={SessionRoute} />
         </Route>
       </Route>
+      <Show when={!settings.general.newLayoutDesigns()}>
+        <Route path="/agentic" component={LegacyAgenticTerminalRoute} />
+      </Show>
       <Show when={settings.general.newLayoutDesigns()}>
         <Route path="/" component={NewHome} />
+        <Route path="/agentic" component={() => <AgenticTerminalRoute />} />
         <Route path="/:dir/session/:id" component={NewLayoutLegacySessionRedirect} />
         <Route path="/server/:serverKey/session/:id" component={TargetSessionRoute} />
       </Show>

@@ -1,0 +1,8 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "rootDir": "../..",
+    "types": ["node", "bun"]
+  },
+  "include": ["./agentic-terminal/**/*.ts", "../../opencode/test/lib/llm-server.ts", "../../opencode/test/lib/test-provider.ts"]
+}

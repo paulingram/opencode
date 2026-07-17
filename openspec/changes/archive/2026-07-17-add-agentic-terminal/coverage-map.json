@@ -1,0 +1,213 @@
+{
+ "change": "add-agentic-terminal",
+ "generated_at": "2026-07-16T15:05:00Z",
+ "source": "opencode/.architect-team/refined-prompts/opencode-design-import-dev-guidance-20260716.md",
+ "mock_authorization": "NONE for app<->server traffic in Phase B (silence means integrate). Phase A sim is the product under test, not a mock - recorded per the coverage-map rule. The 2 open discipline SRs (persona/affordance) resolve via REQ-004/REQ-006 interaction-completeness evidence.",
+ "entries": [
+  {
+   "source_requirement_id": "REQ-001",
+   "source": "Design import materialized locally + recorded as run oracle",
+   "spec_requirement_id": "(run artifact - satisfied at Phase -1)",
+   "layer": "infra",
+   "scenarios": [
+    "5 files at .architect-team/claude-design/a1e9856f-717c-4388-9950-b34ccaf515ab with verified SHA-256s"
+   ],
+   "acceptance_criteria": [
+    "Materialization manifest exists (files_written=5, rejected=0, focus recorded)"
+   ],
+   "status": "satisfied",
+   "evidence": ".architect-team/claude-design-offer.json + materialize result"
+  },
+  {
+   "source_requirement_id": "REQ-002",
+   "source": "Always-on route in packages/app, both layout modes, no flag",
+   "spec_requirement_id": "agentic-terminal-surface/Always-on route registered in both layout modes",
+   "layer": "frontend",
+   "scenarios": [
+    "Reachable in new layout",
+    "Reachable in legacy layout",
+    "Static path precedence"
+   ],
+   "acceptance_criteria": [
+    {
+     "kind": "playwright",
+     "spec": "packages/app/e2e/agentic-terminal/registration.spec.ts",
+     "flow": "navigate /agentic in new-layout mode -> terminal renders, no console errors; navigate in legacy mode -> renders with own providers, no context throw; /:dir routes unaffected"
+    },
+    "Route registrations at app.tsx new-layout fork (NewHome sibling) AND legacy fork (ResolvedDraftRoute template)"
+   ],
+   "confirmed_intuition": "agentic__route__agentic-terminal__0 (user_verdict: corrected -> both modes)"
+  },
+  {
+   "source_requirement_id": "REQ-003",
+   "source": "Phase A prototype faithful to Development Guidance v1.0",
+   "spec_requirement_id": "agentic-terminal-surface/* (geometry, TUI, tokens, status vocabulary) + agentic-terminal-simulation/*",
+   "layer": "frontend",
+   "scenarios": [
+    "Region geometry matches spec",
+    "Overflow discipline",
+    "Topbar never wraps",
+    "State parity on toggle",
+    "TUI line discipline",
+    "Exact token values",
+    "Font resolves",
+    "Glyph/color/motion mapping",
+    "Scripted parity with the oracle",
+    "Restart semantics",
+    "Completion stops the clock",
+    "autoplay false starts paused",
+    "showCost false hides cost column"
+   ],
+   "acceptance_criteria": [
+    {
+     "kind": "playwright",
+     "spec": "packages/app/e2e/agentic-terminal/s12-01-load.spec.ts",
+     "flow": "load /agentic -> zero console errors, JetBrains Mono resolved, zero unresolved terminal-* tokens"
+    },
+    {
+     "kind": "playwright",
+     "spec": "packages/app/e2e/agentic-terminal/s12-02-overflow.spec.ts",
+     "flow": "at 900/1280/1920px widths -> no h-scrollbars on feed/right-panel/TUI; rail scrolls whole"
+    },
+    {
+     "kind": "playwright",
+     "spec": "packages/app/e2e/agentic-terminal/s12-03-topbar.spec.ts",
+     "flow": "long session title -> ellipsis; chips/buttons/toggle single-line"
+    },
+    {
+     "kind": "playwright",
+     "spec": "packages/app/e2e/agentic-terminal/s12-04-tui.spec.ts",
+     "flow": "press v -> TUI single-spaced lines; diff blocks + viewer code x-scroll with sticky header"
+    },
+    "Computed-style capture: sampled tokens equal DESIGN_MAP hexes exactly (zero tolerance) - feeds visual-fidelity reconciliation"
+   ],
+   "confirmed_intuition": "29 high-confidence element entries (all user_verdict: confirmed)"
+  },
+  {
+   "source_requirement_id": "REQ-004",
+   "source": "Full interaction contract (hotkeys, fork, queue, viewer, filter, tabs)",
+   "spec_requirement_id": "agentic-terminal-interaction/*",
+   "layer": "frontend",
+   "scenarios": [
+    "Space guard while typing",
+    "Esc works everywhere",
+    "Fork locks forward stepping",
+    "Tick jump pauses",
+    "Three equivalent resolutions",
+    "Rejected branch preserved",
+    "Chunk splitting on send",
+    "Drain one per step",
+    "Queue survives restart",
+    "Filter round-trip",
+    "Issue badge counts unresolved",
+    "Edit-save-modified-revert cycle",
+    "Edits survive restart"
+   ],
+   "acceptance_criteria": [
+    {
+     "kind": "playwright",
+     "spec": "packages/app/e2e/agentic-terminal/s12-05-fork.spec.ts",
+     "flow": "at fork: ArrowRight locked, auto-advance+drain held; resolve via card click / keypress / plan-tab row (3 runs) -> identical resolved state, rejected strikethrough, resume"
+    },
+    {
+     "kind": "playwright",
+     "spec": "packages/app/e2e/agentic-terminal/s12-06-queue.spec.ts",
+     "flow": "send 'a | b | c' -> a in feed, chips b,c; drain 1/step; per-chip remove; clear; send-next; restart preserves queue"
+    },
+    {
+     "kind": "playwright",
+     "spec": "packages/app/e2e/agentic-terminal/s12-07-viewer.spec.ts",
+     "flow": "open from FILES + from diff header; md + code render; edit->save->modified->revert; esc closes incl. from editor; edits survive restart"
+    },
+    {
+     "kind": "playwright",
+     "spec": "packages/app/e2e/agentic-terminal/s12-08-hotkeys.spec.ts",
+     "flow": "space in prompt/editor never pauses; esc only exception; v toggles; 1/2 only while fork live"
+    },
+    {
+     "kind": "playwright",
+     "spec": "packages/app/e2e/agentic-terminal/s12-09-filter-tabs.spec.ts",
+     "flow": "agent click filters client-side; clear via chip or all-activity; plan counter; issues badge unresolved-only + empty state; flow edges legend"
+    }
+   ],
+   "confirmed_intuition": "fork/plan/prompt/queue/viewer element entries confirmed"
+  },
+  {
+   "source_requirement_id": "REQ-005",
+   "source": "Phase A gate: 8/8 s12 checklist items automated as Playwright flows, green; app suites green",
+   "spec_requirement_id": "(milestone gate over REQ-003/REQ-004 criteria)",
+   "layer": "frontend",
+   "scenarios": [
+    "All 8 s12 checklist items pass as specs against the deterministic sim (autoplay:false, keyboard-stepped)"
+   ],
+   "acceptance_criteria": [
+    "8/8 green with traces captured",
+    "packages/app unit+browser+e2e suites green",
+    "PHASE GATE: blocks all Phase B tasks (tasks 6.x-7.x)"
+   ]
+  },
+  {
+   "source_requirement_id": "REQ-006",
+   "source": "Phase B live integration per AGENT_INTEGRATION.md + confirmed adapters; sim removed entirely; s12 re-target green, no mocks",
+   "spec_requirement_id": "agentic-terminal-live/*",
+   "layer": "both",
+   "scenarios": [
+    "Load-before-listen",
+    "Reconnect resnapshot",
+    "Real session renders across panels",
+    "Single-select question becomes a fork",
+    "Non-conforming question bypasses the banner",
+    "Failed command opens an issue",
+    "Edit triggers prompt notification",
+    "Default attach",
+    "No sim code ships",
+    "Real-backend flow run",
+    "No-mock audit"
+   ],
+   "acceptance_criteria": [
+    "FRONT-TO-BACK INTEGRATION CRITERION (default for both-layer): every Phase B flow runs against the REAL running backend (real opencode serve process, real session store, real SSE stream) - no page.route stubs, no MSW, no fixture server, no installSseTransport",
+    {
+     "kind": "playwright",
+     "spec": "packages/app/e2e/agentic-terminal/live-stream.spec.ts",
+     "flow": "real serve + POST /session -> attach, synced history renders BEFORE streamed parts (load-before-listen); kill+restore SSE -> resnapshot, no dup/lost rendered entries"
+    },
+    {
+     "kind": "playwright",
+     "spec": "packages/app/e2e/agentic-terminal/live-panels.spec.ts",
+     "flow": "controlled session runs failing-then-fixed shell command -> cmd cards red->muted, rail status transitions, issue card open->resolved, real resource values"
+    },
+    {
+     "kind": "playwright",
+     "spec": "packages/app/e2e/agentic-terminal/live-fork.spec.ts",
+     "flow": "single-select question.asked -> banner cards; choose -> POST /question/{id}/reply observed server-side; multi-select -> banner absent (per task 5.4 documented trigger path)"
+    },
+    {
+     "kind": "playwright",
+     "spec": "packages/app/e2e/agentic-terminal/live-useredit.spec.ts",
+     "flow": "viewer edit save -> POST /session/:id/prompt_async with structured user-edit notification + modified badge"
+    },
+    {
+     "kind": "playwright",
+     "spec": "packages/app/e2e/agentic-terminal/s12-retarget (all 8)",
+     "flow": "re-run 8/8 under D6 adapted definitions against controlled real session; green with traces"
+    },
+    "Sim removal grep-audit: sim/ dir absent; fake cost-rate, step timestamps, canned acknowledgment strings absent from shipped surface",
+    "Phase 5 code-path witness: implementing handlers (live-source attach, adapters, question.reply call) verified invoked via trace + dev API access log"
+   ],
+   "confirmed_intuition": "fork-banner/issue-card/edit-save/route entries (4 gate verdicts) as binding criteria"
+  },
+  {
+   "source_requirement_id": "REQ-007",
+   "source": "Git completion: merge to dev (fork default), push origin only, never upstream",
+   "spec_requirement_id": "(Phase 8 run behavior)",
+   "layer": "infra",
+   "scenarios": [
+    "Commit on architect-team/agentic-terminal; clean merge to dev; push to origin; upstream push URL remains DISABLED"
+   ],
+   "acceptance_criteria": [
+    "Phase 8 executes the documented git flow with completion audit exit-0 first",
+    "git remote -v shows upstream push DISABLED at completion"
+   ]
+  }
+ ]
+}

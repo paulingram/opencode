@@ -39,6 +39,15 @@ export default defineConfig({
   projects: [
     {
       name: "chromium",
+      testMatch: /(?:regression|smoke)[\\/].*\.spec\.ts$/,
+      use: { ...devices["Desktop Chrome"] },
+    },
+    {
+      name: "agentic-terminal",
+      testDir: "./e2e/agentic-terminal",
+      testMatch: "*.spec.ts",
+      fullyParallel: false,
+      workers: 1,
       use: { ...devices["Desktop Chrome"] },
     },
   ],
