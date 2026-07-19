@@ -26,6 +26,7 @@ export const dict = {
   "theme.scheme.dark": "深色",
 
   "command.sidebar.toggle": "切換側邊欄",
+  "command.agentic.open": "開啟 Agentic 終端機",
   "command.project.open": "開啟專案",
   "command.project.previous": "上一個專案",
   "command.project.next": "下一個專案",

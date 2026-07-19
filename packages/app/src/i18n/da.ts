@@ -22,6 +22,7 @@ export const dict = {
   "theme.scheme.dark": "Mørk",
 
   "command.sidebar.toggle": "Skift sidebjælke",
+  "command.agentic.open": "Åbn Agentic Terminal",
   "command.project.open": "Åbn projekt",
   "command.project.previous": "Forrige projekt",
   "command.project.next": "Næste projekt",
@@ -728,6 +729,7 @@ export const dict = {
   "common.key.esc": "ESC",
   "sidebar.menu.toggle": "Skift menu",
   "sidebar.nav.projectsAndSessions": "Projekter og sessioner",
+  "sidebar.agentic": "Agentic Terminal",
   "sidebar.settings": "Indstillinger",
   "sidebar.help": "Hjælp",
   "sidebar.workspaces.enable": "Aktiver arbejdsområder",

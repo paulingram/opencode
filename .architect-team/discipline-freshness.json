@@ -1,0 +1,71 @@
+{
+  "gaps": [
+    {
+      "auto_apply_safe": true,
+      "auto_update_command": null,
+      "auto_update_skill": null,
+      "ct6_version": null,
+      "discipline": null,
+      "evidence": "per-codebase discipline registry '.architect-team/discipline-registry.json' does not exist at workspace '.' and at least one catalog discipline is unapplied.",
+      "remediation": "v2.18.0 codebase discipline registry. Phase 0.1 of the next pipeline run will create the registry and apply any auto-apply-safe disciplines. Manual creation is also fine via `/architect-team:discipline-status --apply`.",
+      "severity": "discipline-registry-missing",
+      "sr_origin_kind": null
+    },
+    {
+      "auto_apply_safe": true,
+      "auto_update_command": "/architect-team:classify-test-prod-safety --write-annotations",
+      "auto_update_skill": "test-prod-safety-classifier",
+      "ct6_version": "2.17.0",
+      "discipline": "prod-safe-test-classification",
+      "evidence": {
+        "applicable": true,
+        "newest_test_mtime": 1784444550.0285144,
+        "reason": "unclassified-tests",
+        "tests_scanned": 710,
+        "unclassified_count": 710,
+        "unclassified_sample": [
+          "packages\\app\\e2e\\agentic-terminal\\live-scenarios.spec.ts",
+          "packages\\app\\e2e\\agentic-terminal\\s12-01-load.spec.ts",
+          "packages\\app\\e2e\\agentic-terminal\\s12-02-overflow.spec.ts",
+          "packages\\app\\e2e\\agentic-terminal\\s12-03-topbar.spec.ts",
+          "packages\\app\\e2e\\agentic-terminal\\s12-04-tui.spec.ts"
+        ]
+      },
+      "remediation": "v2.18.0 codebase discipline registry. Auto-execute `/architect-team:classify-test-prod-safety --write-annotations` OR route via SR with origin.kind='discipline-not-applied'.",
+      "severity": "discipline-not-applied",
+      "sr_origin_kind": null
+    },
+    {
+      "auto_apply_safe": false,
+      "auto_update_command": null,
+      "auto_update_skill": null,
+      "ct6_version": "2.11.0",
+      "discipline": "multi-persona-path-coverage",
+      "evidence": {
+        "applicable": true,
+        "path": ".architect-team\\persona-inventory.json",
+        "reason": "persona-inventory-missing"
+      },
+      "remediation": "v2.18.0 codebase discipline registry. Auto-execute `manual update` OR route via SR with origin.kind='persona-inventory-required'.",
+      "severity": "discipline-not-applied",
+      "sr_origin_kind": "persona-inventory-required"
+    },
+    {
+      "auto_apply_safe": false,
+      "auto_update_command": null,
+      "auto_update_skill": null,
+      "ct6_version": "2.13.0",
+      "discipline": "affordance-coverage",
+      "evidence": {
+        "first_match": "packages\\app\\src\\components\\dialog-edit-project-v2.tsx",
+        "reason": "file-upload-affordance-detected"
+      },
+      "remediation": "v2.18.0 codebase discipline registry. Auto-execute `manual update` OR route via SR with origin.kind='affordance-coverage-gap'.",
+      "severity": "discipline-not-applied",
+      "sr_origin_kind": "affordance-coverage-gap"
+    }
+  ],
+  "tool": "verify-discipline-registry-current",
+  "valid": false,
+  "verdict_at": "2026-07-19T07:06:29Z"
+}

@@ -26,6 +26,7 @@ export const dict = {
   "theme.scheme.dark": "Koyu",
 
   "command.sidebar.toggle": "Kenar çubuğunu aç/kapat",
+  "command.agentic.open": "Agentic Terminalini aç",
   "command.project.open": "Proje aç",
   "command.project.previous": "Önceki proje",
   "command.project.next": "Sonraki proje",
@@ -737,6 +738,7 @@ export const dict = {
 
   "sidebar.menu.toggle": "Menüyü aç/kapat",
   "sidebar.nav.projectsAndSessions": "Projeler ve oturumlar",
+  "sidebar.agentic": "Agentic Terminal",
   "sidebar.settings": "Ayarlar",
   "sidebar.help": "Yardım",
   "sidebar.workspaces.enable": "Çalışma alanlarını etkinleştir",

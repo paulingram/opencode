@@ -657,6 +657,15 @@ export function Titlebar(props: { update?: TitlebarUpdate }) {
                             aria-label={language.t("common.goForward")}
                           />
                         </Tooltip>
+                        <Tooltip placement="bottom" value={language.t("sidebar.agentic")} openDelay={800}>
+                          <Button
+                            variant="ghost"
+                            icon="terminal"
+                            class="titlebar-icon w-6 h-6 p-0 box-border"
+                            onClick={() => navigate("/agentic")}
+                            aria-label={language.t("sidebar.agentic")}
+                          />
+                        </Tooltip>
                       </div>
                     </Show>
                     <div id="opencode-titlebar-left" class="flex items-center gap-3 min-w-0 px-2" />

@@ -1,0 +1,19 @@
+{
+  "schema_version": 7,
+  "teammate": "frontend-reachability",
+  "spawned_at": "2026-07-19T07:45:00Z",
+  "task_ids": ["6"],
+  "files_owned": [
+    "packages/app/src/app.tsx",
+    "packages/app/src/desktop-menu.ts",
+    "packages/app/src/desktop-menu.test.ts",
+    "packages/app/src/pages/layout.tsx",
+    "packages/app/src/components/titlebar.tsx",
+    "packages/app/src/components/titlebar-tab-strip.tsx",
+    "packages/app/src/i18n/*.ts",
+    "packages/app/e2e/agentic-terminal/chrome-reachability.spec.ts",
+    "packages/app/src/**/agentic-commands*",
+    ".architect-team/verification-notes/desktop-smoke-checklist.md"
+  ],
+  "expected_review_evidence": ".architect-team/reviews/6.json"
+}

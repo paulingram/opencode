@@ -22,6 +22,7 @@ export const dict = {
   "theme.scheme.dark": "Tamno",
 
   "command.sidebar.toggle": "Prikaži/sakrij bočnu traku",
+  "command.agentic.open": "Otvori Agentic terminal",
   "command.project.open": "Otvori projekat",
   "command.project.previous": "Prethodni projekat",
   "command.project.next": "Sljedeći projekat",
@@ -732,6 +733,7 @@ export const dict = {
 
   "sidebar.menu.toggle": "Prikaži/sakrij meni",
   "sidebar.nav.projectsAndSessions": "Projekti i sesije",
+  "sidebar.agentic": "Agentic Terminal",
   "sidebar.settings": "Postavke",
   "sidebar.help": "Pomoć",
   "sidebar.workspaces.enable": "Omogući radne prostore",

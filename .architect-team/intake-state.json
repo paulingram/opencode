@@ -1,0 +1,53 @@
+{
+ "run_id": "agentic-terminal-desktop-app-20260719",
+ "req_dir": "C:/Users/Paul/Documents/terminus_maximus/opencode/.architect-team/refined-prompts/agentic-terminal-desktop-app-20260718.md",
+ "baseline_sha": "2d2339f518cc993dd98a4d08a084d1be909ec5e3",
+ "dispatch_mode": "teams",
+ "appearance_mode": "strict",
+ "deploy_mandate": {
+  "active": false,
+  "overridden_from_detector": true,
+  "detector_result": {
+   "active": true,
+   "target_kind": "fullstack",
+   "user_prompt_excerpt": "launch ... fully",
+   "matched_verbs": [
+    "launch",
+    "ship"
+   ],
+   "matched_modifiers": [
+    "fully",
+    "no mock",
+    "no mocks"
+   ]
+  },
+  "override_rationale": "False positive: matched verbs launch/ship refer to launching the local desktop executable (acceptance criterion 1) and the historical shipped-2026-07-17 context of commit 2d2339f51; the requirement contains no hosted-deploy ask and the deliverable is in-app navigation wiring."
+ },
+ "codebases": [
+  {
+   "path": "C:/Users/Paul/Documents/terminus_maximus/.opencode-worktrees/agentic-terminal-desktop-app",
+   "kind": "fullstack-monorepo"
+  }
+ ],
+ "flags": {
+  "AUTO_COMMIT": true,
+  "AUTO_PUSH": true,
+  "ALLOW_PUSH_TO_DEFAULT": false,
+  "PROPOSAL_FIRST": false,
+  "AUTO_MERGE_MAIN": true,
+  "mainline_branch": "dev"
+ },
+ "dev_loop_iterations": 0,
+ "created_at": "2026-07-19T07:03:51.492039+00:00",
+ "triage_done": true,
+ "triage_verdict": "feature",
+ "maps_status": {
+  "CODEBASE_MAP": "current",
+  "ROUTE_MAP": "current",
+  "DESIGN_MAP": "current",
+  "INTERACTION_INTUITION_MAP": "current-confirmed",
+  "INTEGRATION_MAP": "current",
+  "rationale": "last_mapped 2026-07-17T05:25:14Z matches HEAD 2d2339f51 content; the shipping commit carried the map updates and passed that run codebase documentation-currency audit; phase -1D bulk-verify silent no-op (confirmed:true, no new low-confidence items)"
+ },
+ "phase": "Phase 0"
+}

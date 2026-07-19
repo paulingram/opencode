@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-07-16T05:52:00Z",
+  "created_by_run": "agentic-terminal-20260716",
+  "disciplines": {
+    "prod-safe-test-classification": {
+      "status": "deferred",
+      "ct6_version": "2.17.0",
+      "reason": "695 unclassified tests are ALL inherited from upstream sst/opencode; fork-wide annotation would permanently diverge every test file from upstream (independently-maintained fork, upstream fetch retained). Scope narrowed: tests ADDED by architect-team runs are classified at authoring time.",
+      "deferred_by_run": "agentic-terminal-20260716",
+      "scope_narrowing": "run-added tests only",
+      "reaffirmed_by_run": "agentic-terminal-desktop-app-20260719",
+      "reaffirmed_at": "2026-07-19T07:07:10.434288+00:00"
+    },
+    "multi-persona-path-coverage": {
+      "status": "sr-routed",
+      "sr": "SR-discipline-persona-20260716"
+    },
+    "affordance-coverage": {
+      "status": "sr-routed",
+      "sr": "SR-discipline-affordance-20260716"
+    }
+  }
+}

@@ -1,0 +1,92 @@
+{
+  "change_name": "agentic-terminal-desktop-reachability",
+  "source": "C:/Users/Paul/Documents/terminus_maximus/opencode/.architect-team/refined-prompts/agentic-terminal-desktop-app-20260718.md",
+  "authorizations": {
+    "no_backend_layer": "No backend requirement exists in this change; dev-API integration criteria are N/A. The surface's sidecar-backed data path shipped in add-agentic-terminal and is unchanged.",
+    "desktop_exe_verification": "User-authorized (refinement iteration 2, answer 3): desktop-exe-only behaviors (native/in-app menu activation, relaunch restore) verify via unit tests + a recorded manual desktop smoke checklist; no desktop e2e harness this run.",
+    "web_failure_out_of_scope": "User-authorized (refinement iteration 1, answer 2): web no-backend /agentic behavior is out of scope."
+  },
+  "confirmed_stubs": [],
+  "entries": [
+    {
+      "source_requirement_id": "SRC-1-nav-entry-both-modes",
+      "spec_requirement_id": "agentic-terminal-reachability/Visible navigation entry in both layout modes",
+      "layer": "frontend",
+      "scenarios": [
+        "Reachable from nav in new layout",
+        "Reachable from nav in legacy layout",
+        "Entry survives layout-mode toggle"
+      ],
+      "acceptance_criteria": [
+        "Nav entry visible in new layout; activating it navigates to /agentic and the surface renders; <= 2 interactions (Playwright: real page.click on the entry, packages/app/e2e/agentic-terminal/ new chrome spec)",
+        "Nav entry visible in legacy layout; activating it navigates to /agentic and the surface renders; <= 2 interactions (Playwright real click with newLayoutDesigns disabled)",
+        "Entry present and functional immediately after toggling newLayoutDesigns (unit/component coverage of the keyed remount; e2e where the harness allows)",
+        "Desktop-exe visibility of the entries recorded in the manual smoke checklist (authorized mechanism)"
+      ],
+      "playwright_flow": {
+        "route": "/",
+        "login_state": "dev server default (no auth)",
+        "actions": "click the Agentic Terminal nav entry (role/label selector with visibility+enabled witness)",
+        "assertions": "URL is /agentic; [data-component agentic topbar] visible; surface renders live content"
+      }
+    },
+    {
+      "source_requirement_id": "SRC-2-command-palette-action",
+      "spec_requirement_id": "agentic-terminal-reachability/Command-palette action",
+      "layer": "frontend",
+      "scenarios": ["Palette lists and executes the action"],
+      "acceptance_criteria": [
+        "CommandOption id agentic.open registered in both layout modes with title language.t('command.agentic.open') (unit test)",
+        "Palette flow: open palette, execute Open Agentic Terminal, URL becomes /agentic and surface renders (Playwright: real keyboard/click drive)"
+      ],
+      "playwright_flow": {
+        "route": "/",
+        "login_state": "dev server default (no auth)",
+        "actions": "open command palette (keyboard), type/select the Open Agentic Terminal action, execute",
+        "assertions": "URL is /agentic; surface renders"
+      }
+    },
+    {
+      "source_requirement_id": "SRC-3-view-menu-entry",
+      "spec_requirement_id": "agentic-terminal-reachability/Shared View-menu entry",
+      "layer": "frontend",
+      "scenarios": ["Menu entry present in shared menu model", "Menu entry opens the surface"],
+      "acceptance_criteria": [
+        "DESKTOP_MENU View menu contains command: entry agentic.open (desktop-menu.test.ts extension)",
+        "agentic.open command registered whenever the menu renders in both modes, so the Windows in-app entry is enabled (unit test; windows-app-menu commandDisabled constraint)",
+        "Native macOS + Windows in-app activation recorded in the manual desktop smoke checklist (authorized mechanism for exe-only behavior)"
+      ]
+    },
+    {
+      "source_requirement_id": "SRC-4-relaunch-restore-full-url",
+      "spec_requirement_id": "agentic-terminal-reachability/Desktop relaunch restore of the full URL",
+      "layer": "frontend",
+      "scenarios": ["Relaunch restores active session URL", "Bare route also restores"],
+      "acceptance_criteria": [
+        "Persistence round-trip of /agentic?session=ses_x through the last-active-url guard verified (unit assertion or static file:line evidence per tasks 3.1)",
+        "Relaunch restore of bare /agentic and /agentic?session=... recorded in the manual desktop smoke checklist (authorized mechanism)",
+        "No change to stale-session resolution behavior (pages/agentic-terminal/index.tsx:70-87 is the contract; diff must not touch it)"
+      ]
+    },
+    {
+      "source_requirement_id": "SRC-5-localized-labels",
+      "spec_requirement_id": "agentic-terminal-reachability/Localized labels",
+      "layer": "frontend",
+      "scenarios": ["Labels resolve in every locale"],
+      "acceptance_criteria": [
+        "command.agentic.open present with non-empty value in en.ts and every non-English locale file (mechanical test or script check)",
+        "Nav-entry labels rendered via language.t resolve in every locale; DESKTOP_MENU label follows the raw-string idiom (exempt, matching siblings)"
+      ]
+    },
+    {
+      "source_requirement_id": "SRC-6-existing-suite-regression",
+      "spec_requirement_id": "regression-guard (no spec delta; existing agentic-terminal-* specs unchanged)",
+      "layer": "frontend",
+      "scenarios": ["Existing e2e suite passes unchanged"],
+      "acceptance_criteria": [
+        "Full packages/app/e2e/agentic-terminal/ suite passes on the change branch",
+        "packages/app unit suite + linters/type-checkers clean"
+      ]
+    }
+  ]
+}

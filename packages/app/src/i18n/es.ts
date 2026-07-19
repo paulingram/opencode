@@ -22,6 +22,7 @@ export const dict = {
   "theme.scheme.dark": "Oscuro",
 
   "command.sidebar.toggle": "Alternar barra lateral",
+  "command.agentic.open": "Abrir terminal Agentic",
   "command.project.open": "Abrir proyecto",
   "command.project.previous": "Proyecto anterior",
   "command.project.next": "Siguiente proyecto",
@@ -735,6 +736,7 @@ export const dict = {
 
   "sidebar.menu.toggle": "Alternar menú",
   "sidebar.nav.projectsAndSessions": "Proyectos y sesiones",
+  "sidebar.agentic": "Agentic Terminal",
   "sidebar.settings": "Ajustes",
   "sidebar.help": "Ayuda",
   "sidebar.workspaces.enable": "Habilitar espacios de trabajo",

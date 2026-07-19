@@ -145,6 +145,8 @@ export const DESKTOP_MENU: DesktopMenu[] = [
       { type: "item", label: "Toggle Terminal", command: "terminal.toggle", accelerator: { macos: "Ctrl+`" } },
       { type: "item", label: "Toggle File Tree", command: "fileTree.toggle" },
       { type: "separator" },
+      { type: "item", label: "Agentic Terminal", command: "agentic.open" },
+      { type: "separator" },
       { type: "item", label: "Reload", action: "view.reload", role: "reload" },
       { type: "item", label: "Toggle Developer Tools", action: "view.toggleDevTools", role: "toggleDevTools" },
       { type: "separator" },

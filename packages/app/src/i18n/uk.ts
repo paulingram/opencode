@@ -22,6 +22,7 @@ export const dict = {
   "theme.scheme.dark": "Темна",
 
   "command.sidebar.toggle": "Перемкнути бічну панель",
+  "command.agentic.open": "Відкрити терміналAgentic",
   "command.project.open": "Відкрити проєкт",
   "command.project.previous": "Попередній проєкт",
   "command.project.next": "Наступний проєкт",
@@ -803,6 +804,7 @@ export const dict = {
 
   "sidebar.menu.toggle": "Перемкнути меню",
   "sidebar.nav.projectsAndSessions": "Проєкти та сесії",
+  "sidebar.agentic": "Agentic Terminal",
   "sidebar.settings": "Налаштування",
   "sidebar.help": "Довідка",
   "sidebar.workspaces.enable": "Увімкнути робочі області",

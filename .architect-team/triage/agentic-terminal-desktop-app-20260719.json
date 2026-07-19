@@ -1,0 +1,9 @@
+{
+ "kind": "feature",
+ "bug_portion": null,
+ "feature_portion": "Make the shipped /agentic Agentic Terminal surface first-class reachable in the opencode desktop executable: nav entry in both layout modes, command-palette action, shared DESKTOP_MENU View-menu entry, relaunch restore of full URL incl ?session — sidecar-backed; unit tests + manual smoke checklist + existing e2e suite passing.",
+ "confidence": "high",
+ "reasoning": "capability-shape throughout; only symptom-shape ('doesnt even work online') is explicitly Scope (out); no parity verbs",
+ "classified_at": "2026-07-19T07:15:00Z",
+ "classifier": "architect-team:bug-classifier"
+}

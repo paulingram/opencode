@@ -524,6 +524,23 @@ function ServerKey(props: ParentProps) {
   )
 }
 
+function AgenticCommands() {
+  const command = useCommand()
+  const language = useLanguage()
+  const navigate = useNavigate()
+
+  command.register("agentic", () => [
+    {
+      id: "agentic.open",
+      title: language.t("command.agentic.open"),
+      category: language.t("command.category.view"),
+      onSelect: () => navigate("/agentic"),
+    },
+  ])
+
+  return null
+}
+
 export function AppInterface(props: {
   children?: JSX.Element
   defaultServer: ServerConnection.Key
@@ -562,6 +579,7 @@ export function AppInterface(props: {
                   <TabsProvider>
                     <PermissionProvider>
                       <NotificationProvider>
+                        <AgenticCommands />
                         <ServerShell>
                           <Show when={useSettings().general.newLayoutDesigns()} fallback={routerProps.children}>
                             <NewAppLayout serverScoped={props.serverScoped}>{routerProps.children}</NewAppLayout>

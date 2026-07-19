@@ -22,6 +22,7 @@ export const dict = {
   "theme.scheme.dark": "มืด",
 
   "command.sidebar.toggle": "สลับแถบข้าง",
+  "command.agentic.open": "เปิด Agentic Terminal",
   "command.project.open": "เปิดโปรเจกต์",
   "command.project.previous": "โปรเจกต์ก่อนหน้า",
   "command.project.next": "โปรเจกต์ถัดไป",
@@ -725,6 +726,7 @@ export const dict = {
 
   "sidebar.menu.toggle": "สลับเมนู",
   "sidebar.nav.projectsAndSessions": "โปรเจกต์และเซสชัน",
+  "sidebar.agentic": "Agentic Terminal",
   "sidebar.settings": "การตั้งค่า",
   "sidebar.help": "ช่วยเหลือ",
   "sidebar.workspaces.enable": "เปิดใช้งานพื้นที่ทำงาน",

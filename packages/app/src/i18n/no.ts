@@ -25,6 +25,7 @@ export const dict = {
   "theme.scheme.dark": "Mørk",
 
   "command.sidebar.toggle": "Veksle sidepanel",
+  "command.agentic.open": "Åpne Agentic Terminal",
   "command.project.open": "Åpne prosjekt",
   "command.provider.connect": "Koble til leverandør",
   "command.server.switch": "Bytt server",
@@ -616,6 +617,7 @@ export const dict = {
 
   "sidebar.menu.toggle": "Veksle meny",
   "sidebar.nav.projectsAndSessions": "Prosjekter og sesjoner",
+  "sidebar.agentic": "Agentic Terminal",
   "sidebar.settings": "Innstillinger",
   "sidebar.help": "Hjelp",
   "sidebar.workspaces.enable": "Aktiver arbeidsområder",
