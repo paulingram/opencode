@@ -722,6 +722,7 @@ export const dict = {
   "sidebar.nav.projectsAndSessions": "專案與工作階段",
   "sidebar.settings": "設定",
   "sidebar.help": "說明",
+  "sidebar.agentic": "Agentic 終端機",
   "sidebar.workspaces.enable": "啟用工作區",
   "sidebar.workspaces.disable": "停用工作區",
   "sidebar.gettingStarted.title": "開始使用",
