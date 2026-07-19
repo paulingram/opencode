@@ -1,0 +1,20 @@
+
+04:36:41.402 (crash) > crash reporter started {
+  path: 'C:\\Users\\Paul\\AppData\\Roaming\\ai.opencode.desktop.dev\\Crashpad'
+}
+04:36:41.419         > app starting { version: '1.18.2', packaged: true, onboardingTest: false }
+04:36:41.974         > tauri migration: already done, skipping
+04:36:41.984         > auto updater configured {
+  channel: 'latest',
+  allowPrerelease: false,
+  allowDowngrade: true,
+  currentVersion: '1.18.2'
+}
+04:36:42.038 (network) > net log started {
+  path: 'C:\\Users\\Paul\\AppData\\Roaming\\ai.opencode.desktop.dev\\logs\\20260719T093641\\network.netlog'
+}
+04:36:42.051           > sidecar connection started { url: 'http://127.0.0.1:57627' }
+04:36:42.052           > spawning sidecar { url: 'http://127.0.0.1:57627' }
+04:36:43.163           > loading task finished
+04:36:44.329           > awaiting server ready
+04:36:44.330           > server ready { url: 'http://127.0.0.1:57627' }

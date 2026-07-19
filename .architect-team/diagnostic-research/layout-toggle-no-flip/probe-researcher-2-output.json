@@ -1,0 +1,73 @@
+{
+  "A": {
+    "name": "A: exact test-4 seed (init script re-runs on reload)",
+    "log": [
+      "legacy sidebar rendered",
+      "navigated to /agentic via legacy entry",
+      "goBack -> legacy shell",
+      "settings dialog open, toggle row visible",
+      "switch-control clicked"
+    ],
+    "immediate": {
+      "ariaChecked": "no-switch",
+      "settingsV3": "{\"general\":{\"newLayoutDesigns\":false,\"layoutTransitionEligible\":true}}",
+      "titlebarV2": "absent",
+      "loads": "2"
+    },
+    "flipped": false,
+    "final": {
+      "url": "http://127.0.0.1:3000/",
+      "loads": "2",
+      "unloadSettings": "{\"general\":{\"autoSave\":true,\"releaseNotes\":true,\"followup\":\"steer\",\"showFileTree\":false,\"showNavigation\":false,\"showSearch\":false,\"showStatus\":false,\"showTerminal\":false,\"showReasoningSummaries\":false,\"shellToolPartsExpanded\":false,\"editToolPartsExpanded\":false,\"showCustomAgents\":false,\"mobileTitlebarPosition\":\"top\",\"newLayoutDesigns\":true,\"layoutTransitionEligible\":true,\"shouldDisplayTabsToast\":false},\"appearance\":{\"fontSize\":14,\"mono\":\"\",\"sans\":\"\",\"terminal\":\"\"},\"keybinds\":{},\"permissions\":{\"autoApprove\":false},\"notifications\":{\"agent\":true,\"permissions\":true,\"errors\":false},\"sounds\":{\"agentEnabled\":true,\"agent\":\"staplebops-01\",\"permissionsEnabled\":true,\"permissions\":\"staplebops-02\",\"errorsEnabled\":true,\"errors\":\"nope-03\"}}",
+      "unloadTitlebarV2": "present",
+      "unloadSwitch": "true",
+      "unloadUrl": "http://127.0.0.1:3000/",
+      "settingsV3Now": "{\"general\":{\"autoSave\":true,\"releaseNotes\":true,\"followup\":\"steer\",\"showFileTree\":false,\"showNavigation\":false,\"showSearch\":false,\"showStatus\":false,\"showTerminal\":false,\"showReasoningSummaries\":false,\"shellToolPartsExpanded\":false,\"editToolPartsExpanded\":false,\"showCustomAgents\":false,\"mobileTitlebarPosition\":\"top\",\"newLayoutDesigns\":false,\"layoutTransitionEligible\":true,\"shouldDisplayTabsToast\":false},\"appearance\":{\"fontSize\":14,\"mono\":\"\",\"sans\":\"\",\"terminal\":\"\"},\"keybinds\":{},\"permissions\":{\"autoApprove\":false},\"notifications\":{\"agent\":true,\"permissions\":true,\"errors\":false},\"sounds\":{\"agentEnabled\":true,\"agent\":\"staplebops-01\",\"permissionsEnabled\":true,\"permissions\":\"staplebops-02\",\"errorsEnabled\":true,\"errors\":\"nope-03\"}}",
+      "titlebarV2Now": "absent",
+      "legacySidebarNow": "present",
+      "settingsDialogOpenNow": "no"
+    },
+    "errors": [
+      "console.error: Failed to load resource: net::ERR_CONNECTION_REFUSED",
+      "console.error: Failed to load resource: net::ERR_CONNECTION_REFUSED",
+      "console.error: Failed to load resource: net::ERR_CONNECTION_REFUSED",
+      "console.error: Failed to load resource: net::ERR_CONNECTION_REFUSED",
+      "console.error: Failed to load resource: net::ERR_CONNECTION_REFUSED",
+      "console.error: Failed to load resource: net::ERR_CONNECTION_REFUSED",
+      "console.error: [global-sdk] event stream error {url: http://localhost:4096, fetch: webview, error: TypeError: Failed to fetch\n    at customFetch (http://127.0.0.1:3000/@fs/C:/Users/Paul/Documents/te…}",
+      "console.error: Failed to load resource: net::ERR_CONNECTION_REFUSED",
+      "console.error: Failed to load resource: net::ERR_CONNECTION_REFUSED",
+      "console.error: Failed to load resource: net::ERR_CONNECTION_REFUSED"
+    ]
+  },
+  "B": {
+    "name": "B: real transition-eligible user (seed written once)",
+    "log": [
+      "legacy sidebar rendered",
+      "navigated to /agentic via legacy entry",
+      "goBack -> legacy shell",
+      "settings dialog open, toggle row visible",
+      "switch-control clicked"
+    ],
+    "immediate": {
+      "ariaChecked": "no-switch",
+      "settingsV3": "{\"general\":{\"autoSave\":true,\"releaseNotes\":true,\"followup\":\"steer\",\"showFileTree\":false,\"showNavigation\":false,\"showSearch\":false,\"showStatus\":false,\"showTerminal\":false,\"showReasoningSummaries\":false,\"shellToolPartsExpanded\":false,\"editToolPartsExpanded\":false,\"showCustomAgents\":false,\"mobileTitlebarPosition\":\"top\",\"newLayoutDesigns\":true,\"layoutTransitionEligible\":true,\"shouldDisplayTabsToast\":false},\"appearance\":{\"fontSize\":14,\"mono\":\"\",\"sans\":\"\",\"terminal\":\"\"},\"keybinds\":{},\"permissions\":{\"autoApprove\":false},\"notifications\":{\"agent\":true,\"permissions\":true,\"errors\":false},\"sounds\":{\"agentEnabled\":true,\"agent\":\"staplebops-01\",\"permissionsEnabled\":true,\"permissions\":\"staplebops-02\",\"errorsEnabled\":true,\"errors\":\"nope-03\"}}",
+      "titlebarV2": "absent",
+      "loads": "2"
+    },
+    "flipped": true,
+    "final": {
+      "url": "http://127.0.0.1:3000/",
+      "loads": "2",
+      "unloadSettings": "{\"general\":{\"autoSave\":true,\"releaseNotes\":true,\"followup\":\"steer\",\"showFileTree\":false,\"showNavigation\":false,\"showSearch\":false,\"showStatus\":false,\"showTerminal\":false,\"showReasoningSummaries\":false,\"shellToolPartsExpanded\":false,\"editToolPartsExpanded\":false,\"showCustomAgents\":false,\"mobileTitlebarPosition\":\"top\",\"newLayoutDesigns\":true,\"layoutTransitionEligible\":true,\"shouldDisplayTabsToast\":false},\"appearance\":{\"fontSize\":14,\"mono\":\"\",\"sans\":\"\",\"terminal\":\"\"},\"keybinds\":{},\"permissions\":{\"autoApprove\":false},\"notifications\":{\"agent\":true,\"permissions\":true,\"errors\":false},\"sounds\":{\"agentEnabled\":true,\"agent\":\"staplebops-01\",\"permissionsEnabled\":true,\"permissions\":\"staplebops-02\",\"errorsEnabled\":true,\"errors\":\"nope-03\"}}",
+      "unloadTitlebarV2": "present",
+      "unloadSwitch": "true",
+      "unloadUrl": "http://127.0.0.1:3000/",
+      "settingsV3Now": "{\"general\":{\"autoSave\":true,\"releaseNotes\":true,\"followup\":\"steer\",\"showFileTree\":false,\"showNavigation\":false,\"showSearch\":false,\"showStatus\":false,\"showTerminal\":false,\"showReasoningSummaries\":false,\"shellToolPartsExpanded\":false,\"editToolPartsExpanded\":false,\"showCustomAgents\":false,\"mobileTitlebarPosition\":\"top\",\"newLayoutDesigns\":true,\"layoutTransitionEligible\":true,\"shouldDisplayTabsToast\":false},\"appearance\":{\"fontSize\":14,\"mono\":\"\",\"sans\":\"\",\"terminal\":\"\"},\"keybinds\":{},\"permissions\":{\"autoApprove\":false},\"notifications\":{\"agent\":true,\"permissions\":true,\"errors\":false},\"sounds\":{\"agentEnabled\":true,\"agent\":\"staplebops-01\",\"permissionsEnabled\":true,\"permissions\":\"staplebops-02\",\"errorsEnabled\":true,\"errors\":\"nope-03\"}}",
+      "titlebarV2Now": "present",
+      "legacySidebarNow": "absent",
+      "settingsDialogOpenNow": "no"
+    },
+    "errors": []
+  }
+}

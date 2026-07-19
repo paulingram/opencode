@@ -1,0 +1,28 @@
+{
+  "driver": "smoke-legacy",
+  "started_at": "2026-07-19T19:06:52.723Z",
+  "items": [
+    {
+      "id": "2-pre",
+      "name": "Store-seeded profile boots LEGACY layout",
+      "verdict": "pass",
+      "verified_by": "automated-cdp",
+      "detail": "no v2 titlebar marker after electron-store seed"
+    },
+    {
+      "id": "2a",
+      "name": "Legacy chrome shows Agentic Terminal entry(ies)",
+      "verdict": "fail",
+      "verified_by": "automated-cdp",
+      "detail": "count=0 aria=\"null\" (sidebar rail per sidebar-shell.tsx:95-104 + legacy titlebar per titlebar.tsx:660-668)"
+    },
+    {
+      "id": "driver",
+      "name": "Driver-level failure",
+      "verdict": "fail",
+      "verified_by": "automated-cdp",
+      "detail": "locator.waitFor: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('button[aria-label=\"Settings\"]').first() to be visible\u001b[22m\n\n    at C:\\Users\\Paul\\Documents\\terminus_maximus\\.opencode-worktrees\\agentic-terminal-desktop-app\\.architect-team\\verification-notes\\exe-smoke\\smoke-legacy.mjs:110:21"
+    }
+  ],
+  "finished_at": "2026-07-19T19:07:30.225Z"
+}

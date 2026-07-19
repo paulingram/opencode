@@ -13,7 +13,7 @@ The app SHALL render a visible navigation entry that opens the Agentic Terminal 
 
 #### Scenario: Entry survives layout-mode toggle
 - **WHEN** the user toggles `newLayoutDesigns` in either direction
-- **THEN** the navigation entry is present and functional in the newly-active shell without a page reload
+- **THEN** once the app completes its layout transition (however the product implements it — currently a product-initiated full page reload, `settings.tsx:411` since upstream `4a181c357`), the navigation entry is present and functional in the newly-active shell
 
 ### Requirement: Command-palette action
 The app SHALL register an "Open Agentic Terminal" action in the existing `useCommand` command system. Activating it SHALL navigate to `/agentic`. The action title SHALL come from the i18n dictionary.
@@ -43,6 +43,21 @@ The desktop app SHALL restore the FULL last-active URL for the Agentic Terminal 
 #### Scenario: Bare route also restores
 - **WHEN** the desktop app is quit while on `/agentic` (no query) and relaunched
 - **THEN** the restored initial URL equals `/agentic`
+
+### Requirement: Verified packaged Windows distribution
+The reachability capabilities SHALL be verified in a PACKAGED Windows desktop executable produced by `packages/desktop` `package:win` (electron-builder) on the target machine. The packaged exe SHALL exhibit: the View-menu entry (Windows in-app rendering), the navigation entry in both layout modes (including immediately after toggling `newLayoutDesigns`), the command-palette action, relaunch restore of `/agentic` and `/agentic?session=…`, and the `/agentic` surface rendering live sidecar data (no mocks). Verification SHALL be automated via Playwright/CDP against the packaged exe wherever technically possible; a human-recorded step is acceptable ONLY where automation is genuinely impossible, and the smoke-checklist artifact SHALL carry an honest per-item record of HOW each item was verified (automated / human-recorded / not-verified). Platforms not verified on the target machine (macOS, Linux) SHALL be explicitly recorded as not-verified follow-ups, never pre-ticked.
+
+#### Scenario: Packaged exe builds on the target machine
+- **WHEN** `packages/desktop` `build` then `package:win` are run on the Windows 11 target machine (with the machine's documented toolchain adaptations)
+- **THEN** both exit 0 and a runnable packaged executable is produced
+
+#### Scenario: Smoke checklist green against the packaged exe
+- **WHEN** the packaged executable is launched and the desktop smoke checklist is executed end-to-end against it
+- **THEN** every Windows-verifiable checklist item passes, and each item's record states how it was verified
+
+#### Scenario: Honest platform record
+- **WHEN** the smoke-checklist artifact is inspected after verification
+- **THEN** macOS and Linux rows are explicitly marked not-verified follow-ups, and no item claims verification that did not occur
 
 ### Requirement: Localized labels
 All new user-facing labels that the existing idiom localizes — the command-palette action title (a `command.agentic.open` key per the `command.<id>` pattern) and any navigation-entry label rendered through `language.t` — SHALL be defined as i18n dictionary keys present in the English dictionary AND every non-English app locale file, following the existing locale-key pattern. The `DESKTOP_MENU` label follows the raw-string menu idiom and is exempt (matching every other menu entry).

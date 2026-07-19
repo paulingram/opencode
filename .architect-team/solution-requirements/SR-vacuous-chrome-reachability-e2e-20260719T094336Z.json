@@ -1,0 +1,46 @@
+{
+  "id": "SR-vacuous-chrome-reachability-e2e-20260719T094336Z",
+  "status": "resolved",
+  "origin": {
+    "kind": "integration-test-failure",
+    "detail": "The baseline chrome-reachability.spec.ts (the spec cited as passing in tasks.md 4.1-4.2 and review 6.json) was VACUOUS: it asserted a non-existent selector [data-testid='agentic-terminal-root'] (the real testid is 'agentic-terminal', packages/app/src/pages/agentic-terminal/index.tsx:35) and its 'legacy layout' test never enabled or toggled newLayoutDesigns, so the v2 titlebar branch was never exercised. This allowed the AgenticCommands context-provider crash (SR-agentic-commands-context-provider) and the v2-titlebar missing-nav-entry defect (SR-v2-titlebar-nav-entry) to ship while the suite claimed green. The web e2e has since been rewritten (uncommitted, by frontend-v2-titlebar-fix) with genuine selectors and a layout-toggle test; running it now produces 4/4 FAIL with 'Page crashed' \u2014 confirming the AgenticCommands crash is reachable in the web build too, not only the packaged exe."
+  },
+  "summary": "Prior chrome-reachability e2e was vacuous (wrong testid selector + never toggled newLayoutDesigns), so it could not catch the AgenticCommands renderer crash or the v2-titlebar missing nav entry. The rewritten e2e now genuinely exercises both layout forks and fails with 'Page crashed' until the AgenticCommands fix lands. This SR tracks the test-quality defect and mandates that the fix include REAL coverage (already authored in the rewritten spec) \u2014 not just the app.tsx move.",
+  "acceptance_criteria": [
+    "The chrome-reachability e2e uses the correct testid 'agentic-terminal' (not the non-existent 'agentic-terminal-root')",
+    "The e2e genuinely exercises BOTH layout modes (newLayoutDesigns ON and OFF) via localStorage pre-seed (setLayoutMode) \u2014 not just the legacy branch",
+    "The e2e includes a layout-toggle-survival test that flips newLayoutDesigns in-app and re-verifies the nav entry",
+    "After the AgenticCommands fix lands, the full chrome-reachability suite passes (4/4) \u2014 proving the coverage is real, not vacuous",
+    "The unit suite (app.test.tsx) is extended to actually mount the AppInterface tree (or AgenticCommands in its real provider context) so a context-provider regression is caught at unit level, not only at e2e/packaged-exe level"
+  ],
+  "affected_requirements": [
+    "SRC-8",
+    "SRC-6-existing-suite-regression"
+  ],
+  "scope": {
+    "files_to_change": [
+      "packages/app/e2e/agentic-terminal/chrome-reachability.spec.ts (ALREADY rewritten in worktree by frontend-v2-titlebar-fix \u2014 genuine selectors + layout-toggle test; verify it passes after the app.tsx fix)",
+      "packages/app/src/app.test.tsx (currently only asserts the DESKTOP_MENU data model; add a component-mount test that renders AgenticCommands inside its real provider tree so useCommand()/useNavigate() context regressions are caught at unit level)"
+    ]
+  },
+  "root_cause_analysis": "Two test-quality gaps: (1) the baseline e2e used a non-existent testid ('agentic-terminal-root') that would never match, so its waitForSelector would time out \u2014 yet tasks.md 4.2 marked the suite as passing. Either it was never run to green or the failure was misreported. (2) The e2e never toggled newLayoutDesigns, so the v2 titlebar branch (where the agentic nav entry was missing) was never rendered \u2014 the test could not catch the v2-titlebar defect. (3) app.test.tsx (unit) only asserts the DESKTOP_MENU constant, never mounts the component tree, so the AgenticCommands-outside-CommandProvider crash was unreachable from unit tests. The combination of these three gaps is why the crash shipped to the packaged-exe stage before being caught.",
+  "evidence": {
+    "nonexistent_testid": "grep -rn 'agentic-terminal-root' packages/ \u2192 only in the baseline e2e spec (3 occurrences), NOWHERE in product code. Real testid is 'agentic-terminal' (packages/app/src/pages/agentic-terminal/index.tsx:35).",
+    "rewritten_spec": "packages/app/e2e/agentic-terminal/chrome-reachability.spec.ts (uncommitted, modified vs dad0fff11 baseline) \u2014 the new spec's header comment (lines 5-15) explicitly documents the prior vacuousness.",
+    "e2e_run_result": "4/4 FAIL running 'npx playwright test e2e/agentic-terminal/chrome-reachability.spec.ts' \u2014 failures include 'Page crashed' (renderer fatal) and timeouts on [data-component='sidebar-nav-desktop']. Test-results at packages/app/e2e/test-results/chrome-reachability-*/error-context.md.",
+    "unit_test_gap": "packages/app/src/app.test.tsx \u2014 imports only DESKTOP_MENU, never renders AppInterface or AgenticCommands."
+  },
+  "suggested_team": "frontend",
+  "blocking": false,
+  "blocks_checklist_items": [],
+  "related_SRs": [
+    "SR-agentic-commands-context-provider-20260719T092909Z",
+    "SR-v2-titlebar-nav-entry-20260719T0855Z"
+  ],
+  "resolved_at": "2026-07-19T12:40:00Z",
+  "resolved_by": "pending-commit (working tree; branch architect-team/agentic-terminal-desktop-app)",
+  "resolution_note": "All ACs met: e2e rewritten+genuine, 4/4 green live, component-mount suite added; independently re-verified (9-independent.json, 22/22 full-suite live). Composition-guard addendum tracked under 9-adversarial gap remediation.",
+  "diagnostic_plan_path": ".architect-team/diagnostic-research/agentic-commands-context/diagnostic-plan-20260719T1010Z.md",
+  "diagnostic_research_completed_at": "2026-07-19T10:14:00Z",
+  "diagnostic_note": "Diagnosed within the agentic-commands diagnostic research (3 researchers unanimous: prior e2e never executed \u2014 wrong port/selectors/keybind; app.test.tsx rendered nothing). The plan's Required-test-repairs section IS this SR's fix specification; the layout-toggle plan (diagnostic-plan-20260719T1200Z.md) extended it for test 4."
+}

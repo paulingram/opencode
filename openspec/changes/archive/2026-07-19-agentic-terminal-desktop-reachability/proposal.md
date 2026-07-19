@@ -14,6 +14,17 @@ The Agentic Terminal surface (shipped 2026-07-17, change `add-agentic-terminal`,
 
 Explicitly OUT of scope (user-authorized during refinement): the web no-backend `/agentic` failure; a standalone codebase-audit artifact; redesigning the Agentic Terminal surface itself; a desktop-executable e2e harness.
 
+## Continuation (2026-07-19, refined prompt A/92 — supersedes the exe-verification deferral above)
+
+The implementation shipped and passed review (658/658 unit tests, independent + adversarial verdicts) but was never verified in a real desktop executable. The user's continuation mandate ("conitnue with updates and make desktop app work", refined 2026-07-19):
+
+- Build a PACKAGED WINDOWS EXE on this machine (`packages/desktop` `package:win`, electron-builder), fixing whatever breaks — known toolchain collisions: bare-`bun` predev/prebuild vs npm-exec-only bun, no symlink privilege, Git-Bash SHELL leak.
+- Execute the desktop smoke checklist (`.architect-team/verification-notes/desktop-smoke-checklist.md`) END-TO-END against the packaged exe: automate what Playwright/CDP can drive; a human-recorded step is acceptable only where automation is genuinely impossible; every item carries an honest per-item verification record. Fixes for failures found ARE the "updates".
+- Honesty-correct the checklist: macOS/Linux Platforms boxes were pre-ticked without verification — untick; they stay explicit follow-ups.
+- Keep the web e2e suite + unit suite green; refresh stale docs; merge the branch into `dev` and push to origin (never upstream). Done = verified AND merged AND pushed.
+
+The prior "no desktop-executable e2e harness" exclusion stands for PRODUCT code — the exe-smoke automation is a run-verification artifact under `.architect-team/verification-notes/exe-smoke/`, not a repo e2e suite addition.
+
 ## Capabilities
 
 ### New Capabilities

@@ -289,6 +289,7 @@ function SharedProviders(props: ParentProps) {
       <BodyDesignClass />
       <CommandProvider>
         <DesktopCommands />
+        <AgenticCommands />
         <HighlightsProvider>{props.children}</HighlightsProvider>
       </CommandProvider>
     </>
@@ -524,7 +525,7 @@ function ServerKey(props: ParentProps) {
   )
 }
 
-function AgenticCommands() {
+export function AgenticCommands() {
   const command = useCommand()
   const language = useLanguage()
   const navigate = useNavigate()
@@ -579,7 +580,6 @@ export function AppInterface(props: {
                   <TabsProvider>
                     <PermissionProvider>
                       <NotificationProvider>
-                        <AgenticCommands />
                         <ServerShell>
                           <Show when={useSettings().general.newLayoutDesigns()} fallback={routerProps.children}>
                             <NewAppLayout serverScoped={props.serverScoped}>{routerProps.children}</NewAppLayout>

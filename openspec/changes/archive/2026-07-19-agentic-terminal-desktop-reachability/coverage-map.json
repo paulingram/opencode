@@ -3,7 +3,7 @@
   "source": "C:/Users/Paul/Documents/terminus_maximus/opencode/.architect-team/refined-prompts/agentic-terminal-desktop-app-20260718.md",
   "authorizations": {
     "no_backend_layer": "No backend requirement exists in this change; dev-API integration criteria are N/A. The surface's sidecar-backed data path shipped in add-agentic-terminal and is unchanged.",
-    "desktop_exe_verification": "User-authorized (refinement iteration 2, answer 3): desktop-exe-only behaviors (native/in-app menu activation, relaunch restore) verify via unit tests + a recorded manual desktop smoke checklist; no desktop e2e harness this run.",
+    "desktop_exe_verification": "SUPERSEDED 2026-07-19 (continuation refinement A/92, user-confirmed): the packaged Windows exe IS built and the smoke checklist IS executed against it this run — automated via Playwright/CDP wherever possible; human-recorded steps ONLY where automation is genuinely impossible, with an honest per-item verified-by record. macOS/Linux remain not-verified explicit follow-ups (user chose 'Packaged Windows exe' as the verification target). The original 'no desktop e2e harness' exclusion still holds for PRODUCT code — the exe-smoke driver is a run artifact under .architect-team/verification-notes/exe-smoke/.",
     "web_failure_out_of_scope": "User-authorized (refinement iteration 1, answer 2): web no-backend /agentic behavior is out of scope."
   },
   "confirmed_stubs": [],
@@ -87,6 +87,36 @@
         "Full packages/app/e2e/agentic-terminal/ suite passes on the change branch",
         "packages/app unit suite + linters/type-checkers clean"
       ]
+    },
+    {
+      "source_requirement_id": "SRC-7-packaged-exe-builds",
+      "spec_requirement_id": "agentic-terminal-reachability/Verified packaged Windows distribution",
+      "layer": "infra",
+      "scenarios": ["Packaged exe builds on the target machine"],
+      "acceptance_criteria": [
+        "packages/desktop build (electron-vite build incl. prebuild) exits 0 on this Windows 11 machine using the design-D7 toolchain adaptations (bun on session PATH, SHELL stripped, no package.json changes)",
+        "package:win (electron-builder --win) exits 0 and emits a runnable packaged executable (win-unpacked dir and/or installer); local signing skipped per design D8 if signing-tool acquisition fails on this machine",
+        "The exact bring-up steps are recorded in .architect-team/verification-notes/exe-smoke/build-log.md"
+      ]
+    },
+    {
+      "source_requirement_id": "SRC-8-exe-smoke-verified",
+      "spec_requirement_id": "agentic-terminal-reachability/Verified packaged Windows distribution",
+      "layer": "frontend",
+      "scenarios": ["Smoke checklist green against the packaged exe", "Honest platform record"],
+      "acceptance_criteria": [
+        "Packaged exe launched with --remote-debugging-port and driven via Playwright chromium.connectOverCDP (design D8): nav entry opens /agentic in BOTH layout modes incl. immediately after toggling newLayoutDesigns; command palette runs Open Agentic Terminal; Windows in-app View menu contains and activates Agentic Terminal; /agentic renders live sidecar data (no mocks)",
+        "Relaunch restore verified against the packaged exe: quit on /agentic?session=<id>, relaunch, restored URL equals /agentic?session=<id>; bare /agentic also restores",
+        "Every checklist item carries an honest verified-by record (automated-cdp / human-recorded / not-verified); human-recorded ONLY where automation genuinely impossible with the impossibility stated",
+        "Checklist Platforms section corrected: macOS and Linux unticked, marked explicit not-verified follow-ups",
+        "Every failure discovered during exe verification becomes an SR and is fixed this run, then the affected checklist items re-verified"
+      ],
+      "playwright_flow": {
+        "route": "packaged exe (CDP attach, not a URL)",
+        "login_state": "exe's own sidecar Local Server (live data)",
+        "actions": "drive nav entry, palette, in-app menu, layout toggle, process quit+relaunch via the exe-smoke driver",
+        "assertions": "URL transitions to /agentic; surface renders live content; restored URL matches; per-item verified-by records written"
+      }
     }
   ]
 }

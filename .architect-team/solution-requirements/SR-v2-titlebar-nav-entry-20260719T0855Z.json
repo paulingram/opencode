@@ -1,0 +1,41 @@
+{
+  "id": "SR-v2-titlebar-nav-entry-20260719T0855Z",
+  "status": "resolved",
+  "created_at": "2026-07-19T08:55:00Z",
+  "origin": {
+    "kind": "map-refresh-discovery",
+    "detail": "Phase -1B route-map refresh (continuation run) traced the titlebar Switch structure: Match when={useV2Titlebar()} v2 branch spans titlebar.tsx:252-536 and contains NO agentic entry; the agentic button (titlebar.tsx:660-668) sits in the Match-when legacy fallback branch (:537+). Orchestrator independently verified against source 2026-07-19. The prior run's review evidence claimed 'nav entry visible+functional new layout' verified \u2014 the claim does not hold against the code."
+  },
+  "summary": "New layout (newLayoutDesigns ON) has NO visible navigation entry for /agentic \u2014 the 'new-layout' titlebar button was placed in the titlebar's LEGACY branch, so both pointer-visible entries (titlebar button, sidebar rail) are legacy-only. Violates spec requirement 'Visible navigation entry in both layout modes' and coverage-map SRC-1.",
+  "affected_requirements": [
+    "SRC-1-nav-entry-both-modes"
+  ],
+  "affected_screens": [
+    "titlebar (v2 branch)",
+    "new layout chrome"
+  ],
+  "acceptance_criteria": [
+    "A visible nav entry that navigates to /agentic exists in the V2 titlebar branch (titlebar.tsx Match when={useV2Titlebar()}), idiomatic to the v2 chrome, aria-label from i18n (sidebar.agentic), <= 2 interactions",
+    "The legacy entries (titlebar legacy-branch button, sidebar rail) remain functional and unchanged in appearance",
+    "Unit/component coverage genuinely exercises the LAYOUT-MODE FORK: with newLayoutDesigns ON the v2 titlebar renders the agentic entry; with OFF the legacy chrome renders its entries; entry functional immediately after toggling (keyed remount app.tsx:575)",
+    "The e2e chrome spec (packages/app/e2e/agentic-terminal/chrome-reachability.spec.ts) covers new-layout nav-entry visibility+navigation GENUINELY (real page.click with newLayoutDesigns enabled) \u2014 audit why the existing spec/test passed while the entry was absent in v2, and fix the vacuous assertion",
+    "packages/app unit suite + typecheck clean; full e2e agentic-terminal suite passes"
+  ],
+  "scope": {
+    "files_to_change": [
+      "packages/app/src/components/titlebar.tsx",
+      "packages/app/src/components/titlebar (v2 sub-chrome if placement demands, per D3 latitude)",
+      "packages/app/src/app.test.tsx or colocated titlebar test (layout-fork coverage)",
+      "packages/app/e2e/agentic-terminal/chrome-reachability.spec.ts"
+    ]
+  },
+  "suggested_team": "frontend",
+  "appearance_note": "strict mode: the new v2 entry is IN-MANDATE (the spec explicitly requires it); match v2 chrome idiom exactly; no other appearance changes",
+  "diagnostic_plan_path": null,
+  "diagnostic_note": "Non-test-failure origin; diagnosis complete in this SR (wrong Switch branch placement). Direct fix-team dispatch per Phase 3b rules.",
+  "spawned_teammate": "frontend-v2-titlebar-fix",
+  "spawned_at": "2026-07-19T08:56:00Z",
+  "resolved_at": "2026-07-19T14:20:00Z",
+  "resolved_by": "pending-commit (branch architect-team/agentic-terminal-desktop-app)",
+  "resolution_note": "RESOLVED: AgenticNavEntryV2 in v2 titlebar branch (titlebar.tsx:492); verified on the packaged exe (smoke2 3a/3e pass) and web e2e (test 2); unit RED->GREEN titlebar.test.tsx. Reviews: 8-independent pass, 8-adversarial pass (all attacks held)."
+}

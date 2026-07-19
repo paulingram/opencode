@@ -1,0 +1,19 @@
+{
+  "schema_version": 7,
+  "teammate": "frontend-v2-titlebar-fix",
+  "spawned_at": "2026-07-19T08:56:00Z",
+  "task_ids": ["8"],
+  "sr_id": "SR-v2-titlebar-nav-entry-20260719T0855Z",
+  "layer": "frontend",
+  "files_owned": [
+    "packages/app/src/components/titlebar.tsx",
+    "packages/app/src/app.test.tsx",
+    "packages/app/src/components/titlebar.test.tsx",
+    "packages/app/e2e/agentic-terminal/chrome-reachability.spec.ts"
+  ],
+  "expected_review_evidence": ".architect-team/reviews/8.json",
+  "baseline_sha": "dad0fff112b928f7a6a3cb662fd6e3c739c3aaa1",
+  "deploy_mandate": { "active": false },
+  "appearance_mode": "strict",
+  "dispatch_mode": "teams"
+}

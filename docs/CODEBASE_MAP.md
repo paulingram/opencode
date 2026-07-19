@@ -1,5 +1,5 @@
 ---
-last_mapped: 2026-07-17T05:25:14Z
+last_mapped: 2026-07-19T08:42:02Z
 codebase_kind: fullstack-monorepo
 ---
 
@@ -7,9 +7,12 @@ codebase_kind: fullstack-monorepo
 
 Grounding document for the shipped **Agentic Terminal**: an always-on `/agentic` route in
 `packages/app` (SolidJS/Vite client), registered in both layout modes and backed exclusively by
-opencode's real session/event stream. The Phase A simulation has been removed. Everything below is
-verified against files in this worktree (branch `architect-team/agentic-terminal`). Paths are
-repo-relative to the worktree root unless stated. Cited symbols/line numbers were read directly.
+opencode's real session/event stream. The Phase A simulation has been removed. The route is now
+reachable through first-class chrome in both web and desktop: an `agentic.open` command-palette entry,
+a desktop **View** menu item, a legacy sidebar-rail nav button, and a new-layout titlebar nav button
+(see §3.5 "Reachability chrome"). Everything below is verified against files in this worktree (branch
+`architect-team/agentic-terminal-desktop-app`). Paths are repo-relative to the worktree root unless
+stated. Cited symbols/line numbers were read directly.
 
 ---
 
@@ -125,30 +128,38 @@ Vite + `vite-plugin-solid`, Tailwind 4 (`@tailwindcss/vite`), icon spritesheets.
 
 ### 3.2 The router — `src/app.tsx` (READ THIS FIRST for adding a route)
 
-`app.tsx` (625 lines) owns the whole provider + route tree.
+`app.tsx` (659 lines) owns the whole provider + route tree.
 
-- **`AppInterface` (lines 514-570)** — top-level component. Wraps everything in
+- **`AppInterface` (lines 544-601)** — top-level component. Wraps everything in
   `ServerProvider → GlobalProvider → SettingsProvider → ConnectionGate` and then mounts the router via
-  `<Dynamic component={props.router ?? Router} root={...}>` (lines 546-563). The router `root` installs
-  the persistent shell: `TabsProvider → PermissionProvider → NotificationProvider → ServerShell`, and
-  when `newLayoutDesigns()` is on, wraps children in `<NewAppLayout>` (lines 549-557). The whole router
-  subtree is keyed on `useSettings().general.newLayoutDesigns().toString()` (line 545) so toggling the
-  layout remounts cleanly.
-- **`Routes` (lines 572-603)** — the actual `<Route>` tree. This is where a new top-level route is added.
+  `<Dynamic component={props.router ?? Router} root={...}>` (lines 576-594). The router `root` installs
+  the persistent shell: `TabsProvider → PermissionProvider → NotificationProvider → ServerShell` —
+  `<AgenticCommands />` (see §3.5) is mounted INSIDE `SharedProviders`' `CommandProvider` (line 292,
+  next to `DesktopCommands`; moved 2026-07-19 from a sibling-of-ServerShell mount that sat outside the
+  provider and fatally crashed both renderers on boot — SR-agentic-commands-context-provider)
+  that registers the `agentic.open` command — and when `newLayoutDesigns()` is on, wraps children in
+  `<NewAppLayout>` (lines 584-586). The whole router subtree is keyed on
+  `useSettings().general.newLayoutDesigns().toString()` (line 575) so toggling the layout remounts cleanly.
+- **`AgenticCommands` (exported, lines 528-543)** — null component mounted inside `SharedProviders`' `CommandProvider` (line 292); calls
+  `command.register("agentic", …)` to add the `agentic.open` palette entry (title `command.agentic.open`,
+  category `command.category.view`) that navigates to `/agentic`.
+- **`Routes` (lines 603-638)** — the actual `<Route>` tree. This is where a new top-level route is added.
 
-**Route table (verified `app.tsx:572-603`):**
+**Route table (verified `app.tsx:603-638`):**
 
 | Path | Component | Condition | Line |
 |---|---|---|---|
-| `/` | `LegacyHome` | legacy layout only (`!newLayoutDesigns`) | 585 |
-| `/server/:serverKey/session/:id` | `LegacyTargetSessionRoute` | legacy layout only | 586 |
-| `/:dir` (layout) | `DirectoryLayout` | always (under `LegacyServerLayout`) | 590 |
-| `/:dir/` | `Navigate → session` | child of `/:dir` | 591 |
-| `/:dir/session/:id?` | `SessionRoute` | child of `/:dir` | 592 |
-| `/` | `NewHome` | new layout only (`newLayoutDesigns`) | 596 |
-| `/:dir/session/:id` | `NewLayoutLegacySessionRedirect` | new layout only | 597 |
-| `/server/:serverKey/session/:id` | `TargetSessionRoute` | new layout only | 598 |
-| `/new-session` | `DraftRoute` | always | 600 |
+| `/` | `LegacyHome` | legacy layout only (`!newLayoutDesigns`) | 616 |
+| `/server/:serverKey/session/:id` | `LegacyTargetSessionRoute` | legacy layout only | 617 |
+| `/:dir` (layout) | `DirectoryLayout` | always (under `LegacyServerLayout`) | 621 |
+| `/:dir/` | `Navigate → session` | child of `/:dir` | 622 |
+| `/:dir/session/:id?` | `SessionRoute` | child of `/:dir` | 623 |
+| `/agentic` | `LegacyAgenticTerminalRoute` | legacy layout only | 627 |
+| `/` | `NewHome` | new layout only (`newLayoutDesigns`) | 630 |
+| `/agentic` | `AgenticTerminalRoute` (wrapped) | new layout only | 631 |
+| `/:dir/session/:id` | `NewLayoutLegacySessionRedirect` | new layout only | 632 |
+| `/server/:serverKey/session/:id` | `TargetSessionRoute` | new layout only | 633 |
+| `/new-session` | `DraftRoute` | always | 635 |
 
   Route components of note: `SessionRoute` (64-98), `TargetServerRoute` (100-118, owns the server-identity
   remount via `<Show keyed>` on `serverKey`), `TargetSessionRoute` (120-124), `DraftRoute` (175-197),
@@ -259,9 +270,32 @@ command-success pairing, and derives resource values from real assistant metadat
 `LegacyAgenticTerminalRoute`, which supplies `ServerKey → ServerSDKProvider → ServerSyncProvider` before
 rendering the same route. The UI and store are identical in both modes.
 
+**Reachability chrome (web + desktop).** Four surfaces make `/agentic` reachable, all navigating to
+`/agentic` and all labelled from i18n (`command.agentic.open` / `sidebar.agentic`, added to `en.ts` and
+all 21 locale files):
+
+- **Command palette** — `AgenticCommands` in `app.tsx:528-543` (mounted at `app.tsx:292` inside `SharedProviders`' `CommandProvider`) registers the
+  `agentic.open` command in the **View** category.
+- **Desktop View menu** — `desktop-menu.ts:148` adds `{ type: "item", label: "Agentic Terminal", command:
+  "agentic.open" }` to the View menu (its own separator group).
+- **Legacy sidebar rail** — `pages/layout.tsx:2237-2238` passes `agenticLabel` / `onOpenAgentic` into
+  `SidebarContent`; `pages/layout/sidebar-shell.tsx:95-105` renders a `terminal` `IconButton` (ghost,
+  large) immediately before the settings button when both props are supplied.
+- **New-layout (v2) titlebar** — `AgenticNavEntryV2` (`components/titlebar.tsx:739`, mounted at `:492`
+  in the v2 `Match` branch among the left-side nav controls) renders the `terminal` icon button
+  (added 2026-07-19, SR-v2-titlebar-nav-entry — the original "new-layout" button at `:662-668` is
+  actually in the LEGACY titlebar branch and remains as the legacy titlebar entry).
+- **Legacy titlebar** — `components/titlebar.tsx:662-668` renders a `terminal` ghost `Button` between
+  the forward button and the content region (legacy `Match` branch; shown when projects exist).
+
 **Test infrastructure.** The six colocated files currently contain 48 tests covering the fold,
-adapters, source/replay/queue transport, and rendered panels. `packages/app/e2e/agentic-terminal/`
-contains the §12 browser flows plus `live-scenarios.spec.ts`. Its `live-fixture.ts` is this repository's
+adapters, source/replay/queue transport, and rendered panels. Two colocated unit tests at the
+`packages/app/src/` root cover the reachability chrome's static registration: `app.test.tsx` (View menu
+contains the `agentic.open` entry) and the extended `desktop-menu.test.ts` (the `agentic.open` menu entry
+is present with no conflicting `action`). `packages/app/e2e/agentic-terminal/`
+contains the §12 browser flows, `live-scenarios.spec.ts`, and `chrome-reachability.spec.ts` (3 web-chrome
+flows: palette navigation to `/agentic`, direct route render, and legacy sidebar/titlebar nav
+visibility). Its `live-fixture.ts` is this repository's
 first real-backend Playwright harness: it starts an actual `opencode serve`, connects it to the
 deterministic `TestLLMServer`, drives the generated HTTP/SSE surface without app-traffic mocks, and
 covers load-before-listen, reconnect resnapshot, fork bypass/reply, issue synthesis, viewer

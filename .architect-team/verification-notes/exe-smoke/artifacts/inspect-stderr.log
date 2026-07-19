@@ -1,0 +1,19 @@
+
+DevTools listening on ws://127.0.0.1:9335/devtools/browser/f3cb1fd3-ffeb-4d54-81d8-87bab550ff78
+04:28:09.466 (renderer) > fatal renderer error {
+  error: 'Error: Command context must be used within a context provider\n' +
+    '    at use (oc://renderer/assets/main-CAAA0kzg.js:3062:25)\n' +
+    '    at AgenticCommands (oc://renderer/assets/main-CAAA0kzg.js:163618:19)\n' +
+    '    at oc://renderer/assets/main-CAAA0kzg.js:909:24\n' +
+    '    at untrack (oc://renderer/assets/main-CAAA0kzg.js:255:12)\n' +
+    '    at createComponent (oc://renderer/assets/main-CAAA0kzg.js:909:10)\n' +
+    '    at get children (oc://renderer/assets/main-CAAA0kzg.js:163678:45)\n' +
+    '    at get children (oc://renderer/assets/main-CAAA0kzg.js:3038:26)\n' +
+    '    at Object.fn (oc://renderer/assets/main-CAAA0kzg.js:757:35)\n' +
+    '    at runComputation (oc://renderer/assets/main-CAAA0kzg.js:469:22)\n' +
+    '    at updateComputation (oc://renderer/assets/main-CAAA0kzg.js:452:3)',
+  url: 'oc://renderer/index.html',
+  version: '1.18.2',
+  platform: 'desktop',
+  os: 'windows'
+}

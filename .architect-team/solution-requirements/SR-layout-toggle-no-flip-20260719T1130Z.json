@@ -1,0 +1,31 @@
+{
+  "id": "SR-layout-toggle-no-flip-20260719T1130Z",
+  "status": "resolved",
+  "created_at": "2026-07-19T11:30:00Z",
+  "origin": {
+    "kind": "playwright-failure",
+    "detail": "chrome-reachability.spec.ts test 4 ('entry survives layout-mode toggle'): after a genuine, successfully-landed UI click on the New-layout-designs switch-control (established repo idiom, remote-session-settings.spec.ts:28,63 pattern, scrollIntoViewIfNeeded, no force), [data-slot='titlebar-v2'] never appears within 60s and the page snapshot still shows LEGACY chrome (sidebar rail buttons) \u2014 the layout did not flip. Prior steps all green (tests 1-3 pass; toggle row rendered after layoutTransitionEligible seed; click interception solved). Evidence: reviews/9.json final round; packages/app/e2e/test-results/chrome-reachability-Agenti-f286f--new-layout-no-page-reload--agentic-terminal/ (error-context, screenshot, video)."
+  },
+  "summary": "Clicking the New-layout-designs Settings switch (legacy settings dialog, settings-general.tsx:264) does not transition the app to the v2 layout in the e2e environment \u2014 the keyed router remount (app.tsx:575) either never fires or the setting write does not take. Unknown whether e2e-environment-specific or a real product defect in the live layout-transition path.",
+  "affected_requirements": [
+    "SRC-1-nav-entry-both-modes"
+  ],
+  "acceptance_criteria": [
+    "Root cause of the no-flip established with file:line evidence, explicitly distinguishing product defect vs test-environment artifact vs wrong test assertion",
+    "chrome-reachability.spec.ts test 4 passes genuinely (real UI toggle drive, no force, no programmatic setStore for the toggle itself)",
+    "If a product defect: it is fixed and the fix reviewed; if a test artifact: the test corrected with the reasoning recorded"
+  ],
+  "scope": {
+    "files_to_change": [
+      "packages/app/e2e/agentic-terminal/chrome-reachability.spec.ts",
+      "TBD per diagnosis"
+    ]
+  },
+  "suggested_team": "frontend",
+  "diagnostic_plan_path": ".architect-team/diagnostic-research/layout-toggle-no-flip/diagnostic-plan-20260719T1200Z.md",
+  "spawned_teammate": "frontend-context-fix (resumed)",
+  "diagnostic_research_completed_at": "2026-07-19T12:05:00Z",
+  "resolved_at": "2026-07-19T12:40:00Z",
+  "resolved_by": "pending-commit (working tree; branch architect-team/agentic-terminal-desktop-app)",
+  "resolution_note": "Root cause pinned (test artifact: init-script re-seed on product reload) by 3 unanimous probes + approved plan; test-side fix applied; test 4 green live; independently re-verified."
+}

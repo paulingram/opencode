@@ -489,6 +489,8 @@ export function Titlebar(props: { update?: TitlebarUpdate }) {
                   />
                 </TooltipV2>
 
+                <AgenticNavEntryV2 language={language} navigate={navigate} />
+
                 <TitlebarTabStrip
                   tabs={tabsStore}
                   currentTab={currentTab}
@@ -724,6 +726,33 @@ function TitlebarV2Right(props: { state: TitlebarV2RightState }) {
       </Show>
       <div id="opencode-titlebar-right" class="flex shrink-0 items-center justify-end gap-0" />
     </div>
+  )
+}
+
+// Visible navigation entry to the Agentic Terminal (/agentic) in the v2 titlebar
+// chrome. Spec-mandated for the new layout (Visible navigation entry in both
+// layout modes); mirrors the v2 left-side icon-button idiom (IconButtonV2 +
+// TooltipV2) used by the home button. The terminal glyph reuses the v1 Icon
+// (the v2 icon set has no terminal icon), matching the legacy titlebar/sidebar
+// entries for cross-mode visual consistency. Props accept the language and
+// navigate hooks so the entry is renderable in isolation under test.
+export function AgenticNavEntryV2(props: {
+  language: { t: (key: string) => string }
+  navigate: (to: string) => void
+}) {
+  const label = () => props.language.t("sidebar.agentic")
+  return (
+    <TooltipV2 placement="bottom" value={label()} class="shrink-0">
+      <IconButtonV2
+        type="button"
+        variant="ghost-muted"
+        size="large"
+        class="!w-9 shrink-0"
+        icon={<Icon name="terminal" size="small" />}
+        onClick={() => props.navigate("/agentic")}
+        aria-label={label()}
+      />
+    </TooltipV2>
   )
 }
 

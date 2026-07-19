@@ -1,20 +1,21 @@
 ---
-last_routed: 2026-07-17T05:25:14Z
-codebase: C:/Users/Paul/Documents/terminus_maximus/.opencode-worktrees/agentic-terminal/packages/app
+last_routed: 2026-07-19T08:42:22Z
+codebase: packages/app (repo-relative; this worktree: C:/Users/Paul/Documents/terminus_maximus/.opencode-worktrees/agentic-terminal-desktop-app)
 framework: solidjs-1.9+solid-router (config-based <Route> tree in src/app.tsx)
 ---
 
 # opencode `packages/app` — Route Map
 
-All paths repo-relative to the worktree root; line numbers verified by reading source on 2026-07-16.
-The entire route tree lives in one file: **`packages/app/src/app.tsx`** — `Routes` at `app.tsx:572-603`,
-mounted by `AppInterface` at `app.tsx:514-570`.
+All paths repo-relative to the worktree root; `app.tsx` line numbers re-verified by reading source on
+2026-07-19 (the desktop-chrome reachability change inserted `AgenticCommands`, shifting later anchors).
+The entire route tree lives in one file: **`packages/app/src/app.tsx`** — `Routes` at `app.tsx:603-638`,
+mounted by `AppInterface` at `app.tsx:544-601`.
 
 **The design-system fork is the single most important structural fact.** Every route's rendering is
 forked on `settings.general.newLayoutDesigns()` (`context/settings.tsx`): the router subtree is keyed on
-its string value (`app.tsx:545`) so a toggle remounts everything, the router `root` wraps children in
-`<NewAppLayout>` only when the flag is on (`app.tsx:553-555`), and the `Routes` component registers
-different route sets per mode (`app.tsx:582`, `app.tsx:595`). "new layout" / "legacy layout" below
+its string value (`app.tsx:575`) so a toggle remounts everything, the router `root` wraps children in
+`<NewAppLayout>` only when the flag is on (`app.tsx:584-586`), and the `Routes` component registers
+different route sets per mode (`app.tsx:613`, `app.tsx:629`). "new layout" / "legacy layout" below
 refers to this flag.
 
 ## Route Inventory
@@ -28,33 +29,33 @@ There is no auth system — Type is `public` for every route; the only gate is s
 
 | Route | Mode | Component | File (defined at) | API calls (beyond shared bootstrap) | Outbound links |
 |---|---|---|---|---|---|
-| *(pathless layout)* | both | `LegacyServerLayout` | `app.tsx:577-581`, def `167-173` | shared bootstrap set (below); legacy shell: see `pages/layout.tsx` row | — |
-| `/` | legacy only | `LegacyHome` | `app.tsx`; `pages/home.tsx` | `client.session.update` (`home.tsx:547`, rename); prefetch `ctx.sync.session.sync(id)` (`home.tsx:385-415`) | `/server/:serverKey/session/:id`, `/new-session?draftId=…`, `/:dir` |
-| `/server/:serverKey/session/:id` | legacy only | `LegacyTargetSessionRoute` | `app.tsx`, def `126-135` | own `ServerSDKProvider`+`ServerSyncProvider` bootstrap for the target server | redirects → `/:dir/session/:id` (`app.tsx:146-150`) |
-| `/agentic` (`?session`) | legacy only | `LegacyAgenticTerminalRoute` → `AgenticTerminalRoute` | `app.tsx:200-210,609`; `pages/agentic-terminal/index.tsx` | own `ServerKey → ServerSDKProvider → ServerSyncProvider`; live source call set listed below | updates its own URL to `/agentic?session=ses_…` when first prompt creates a session |
-| `/:dir` (layout) | both | `DirectoryLayout` | `app.tsx:590`; `pages/directory-layout.tsx:85-118` | directory-scoped: `SDKProvider` + `DirectoryDataProvider` (`directory-layout.tsx:116-117`) | children below |
-| `/:dir/` | both | `Navigate → session` | `app.tsx:591` | — | `/:dir/session` |
-| `/:dir/session/:id?` | both (behavior forks) | `SessionRoute` → `SessionPage` | `app.tsx:592`, def `64-98`; `pages/session.tsx:144` | `client.vcs.diff` (`session.tsx:689,737`), `client.project.initGit` (`session.tsx:842`), `client.session.abort` (`session.tsx:1844`), `client.session.promptAsync` (`components/prompt-input/submit.ts:155`) | new mode + `:id` → redirect `/server/…/session/:id` (`app.tsx:72-82`); new mode no-`:id` → draft → `/new-session?draftId` (`app.tsx:86-91`) |
-| `/` | new only | `NewHome` | `app.tsx`; `pages/home.tsx:264` | same as LegacyHome row | `/server/:serverKey/session/:id`, `/new-session?draftId=…` |
-| `/agentic` (`?session`) | new only | `AgenticTerminalRoute` | `app.tsx:613`; `pages/agentic-terminal/index.tsx` | inherits shell `ServerSDKProvider → ServerSyncProvider`; live source call set listed below | updates its own URL to `/agentic?session=ses_…` when first prompt creates a session |
-| `/:dir/session/:id` | new only | `NewLayoutLegacySessionRedirect` | `app.tsx`, def after `Routes` | — (reads `TabsProvider` store) | `/server/:serverKey/session/:id` |
-| `/server/:serverKey/session/:id` | new only | `TargetSessionRoute` → `TargetSessionRouteContent` | `app.tsx:598`, def `120-124`; `pages/session.tsx:156` | session view set (same as `SessionRoute` row) on the **target** server's own provider pair (`app.tsx:112-116`) | in-app session/file navigation |
-| `/new-session` (`?draftId`, `?prompt`) | both (legacy redirects away) | `DraftRoute` → `ResolvedDraftRoute` → `NewSession` | `app.tsx:600`, def `175-222`; `pages/new-session.tsx` (lazy) | `client.session.promptAsync` on submit (`components/prompt-input/submit.ts:155`) | `/` (draft missing, `app.tsx:184`); legacy mode → `/${base64(dir)}/session` (`app.tsx:189`) |
+| *(pathless layout)* | both | `LegacyServerLayout` | `app.tsx:608-611`, def `168-174` | shared bootstrap set (below); legacy shell: see `pages/layout.tsx` row | — |
+| `/` | legacy only | `LegacyHome` | `app.tsx:616`; `pages/home.tsx` | `client.session.update` (`home.tsx:547`, rename); prefetch `ctx.sync.session.sync(id)` (`home.tsx:385-415`) | `/server/:serverKey/session/:id`, `/new-session?draftId=…`, `/:dir` |
+| `/server/:serverKey/session/:id` | legacy only | `LegacyTargetSessionRoute` | `app.tsx:617`, def `127-136` | own `ServerSDKProvider`+`ServerSyncProvider` bootstrap for the target server | redirects → `/:dir/session/:id` (`app.tsx:147-151`) |
+| `/agentic` (`?session`) | legacy only | `LegacyAgenticTerminalRoute` → `AgenticTerminalRoute` | `app.tsx:200-210,627`; `pages/agentic-terminal/index.tsx` | own `ServerKey → ServerSDKProvider → ServerSyncProvider`; live source call set listed below | updates its own URL to `/agentic?session=ses_…` when first prompt creates a session |
+| `/:dir` (layout) | both | `DirectoryLayout` | `app.tsx:621`; `pages/directory-layout.tsx:85-118` | directory-scoped: `SDKProvider` + `DirectoryDataProvider` (`directory-layout.tsx:116-117`) | children below |
+| `/:dir/` | both | `Navigate → session` | `app.tsx:622` | — | `/:dir/session` |
+| `/:dir/session/:id?` | both (behavior forks) | `SessionRoute` → `SessionPage` | `app.tsx:623`, def `65-99`; `pages/session.tsx:144` | `client.vcs.diff` (`session.tsx:689,737`), `client.project.initGit` (`session.tsx:842`), `client.session.abort` (`session.tsx:1844`), `client.session.promptAsync` (`components/prompt-input/submit.ts:155`) | new mode + `:id` → redirect `/server/…/session/:id` (`app.tsx:73-83`); new mode no-`:id` → draft → `/new-session?draftId` (`app.tsx:87-92`) |
+| `/` | new only | `NewHome` | `app.tsx:630`; `pages/home.tsx:264` | same as LegacyHome row | `/server/:serverKey/session/:id`, `/new-session?draftId=…` |
+| `/agentic` (`?session`) | new only | `AgenticTerminalRoute` | `app.tsx:631`; `pages/agentic-terminal/index.tsx` | inherits shell `ServerSDKProvider → ServerSyncProvider`; live source call set listed below | updates its own URL to `/agentic?session=ses_…` when first prompt creates a session |
+| `/:dir/session/:id` | new only | `NewLayoutLegacySessionRedirect` | `app.tsx:632`, def `640-659` | — (reads `TabsProvider` store) | `/server/:serverKey/session/:id` |
+| `/server/:serverKey/session/:id` | new only | `TargetSessionRoute` → `TargetSessionRouteContent` | `app.tsx:633`, def `121-125`; `pages/session.tsx:156` | session view set (same as `SessionRoute` row) on the **target** server's own provider pair (`app.tsx:113-117`) | in-app session/file navigation |
+| `/new-session` (`?draftId`, `?prompt`) | both (legacy redirects away) | `DraftRoute` → `ResolvedDraftRoute` → `NewSession` | `app.tsx:635`, def `176-198` + `212-235`; `pages/new-session.tsx` (lazy) | `client.session.promptAsync` on submit (`components/prompt-input/submit.ts:155`) | `/` (draft missing, `app.tsx:185`); legacy mode → `/${base64(dir)}/session` (`app.tsx:190`) |
 
 Note on overlap: in new-layout mode a URL `/:dir/session/:id` is matched by the dedicated redirect route
-(`app.tsx:597`); the nested legacy `/:dir/session/:id?` (`app.tsx:592`) also self-redirects when
-`newLayoutDesigns()` is on (`app.tsx:72-82`), so either match resolves to
+(`app.tsx:632`); the nested legacy `/:dir/session/:id?` (`app.tsx:623`) also self-redirects when
+`newLayoutDesigns()` is on (`app.tsx:73-83`), so either match resolves to
 `/server/:serverKey/session/:id`. Both paths were verified in source.
 
 ## Dynamic Routes
 
 | Param | Routes | Type / format | Resolution |
 |---|---|---|---|
-| `:dir` | `/:dir`, `/:dir/session/:id?` | **base64-encoded absolute directory path** (`base64Encode(directory)`, see `app.tsx:189`, `pages/home.tsx:1630`) | decoded in `DirectoryLayout` (`pages/directory-layout.tsx`); scopes `SDKProvider`/`DirectoryDataProvider` |
-| `:serverKey` | `/server/:serverKey/session/:id` | **base64-encoded `ServerConnection.Key`**; strictly validated — decode must round-trip or throw (`utils/session-route.ts:13-17`) | `requireServerKey` → matched against `global.servers.list()` (`app.tsx:103-106`); `<Show keyed>` on it owns the server-identity remount (`app.tsx:112`) |
-| `:id` | session routes | opencode session ID string (`ses_…`) | resolved from `ServerSync` stores; lineage via `createSessionLineage` (`app.tsx:141-144`) |
-| `?draftId` | `/new-session`, read by `SessionRoute` | draft-tab UUID | matched against `TabsProvider` store (`app.tsx:182`) |
-| `?prompt` | `/:dir/session` (new mode) | free text | seeds `tabs.newDraft(…, search.prompt)` (`app.tsx:90`) |
+| `:dir` | `/:dir`, `/:dir/session/:id?` | **base64-encoded absolute directory path** (`base64Encode(directory)`, see `app.tsx:190`, `pages/home.tsx:1630`) | decoded in `DirectoryLayout` (`pages/directory-layout.tsx`); scopes `SDKProvider`/`DirectoryDataProvider` |
+| `:serverKey` | `/server/:serverKey/session/:id` | **base64-encoded `ServerConnection.Key`**; strictly validated — decode must round-trip or throw (`utils/session-route.ts:13-17`) | `requireServerKey` → matched against `global.servers.list()` (`app.tsx:104-107`); `<Show keyed>` on it owns the server-identity remount (`app.tsx:113`) |
+| `:id` | session routes | opencode session ID string (`ses_…`) | resolved from `ServerSync` stores; lineage via `createSessionLineage` (`app.tsx:142-145`) |
+| `?draftId` | `/new-session`, read by `SessionRoute` | draft-tab UUID | matched against `TabsProvider` store (`app.tsx:183`) |
+| `?prompt` | `/:dir/session` (new mode) | free text | seeds `tabs.newDraft(…, search.prompt)` (`app.tsx:91`) |
 | `?session` | `/agentic` (both modes) | opencode session ID (`ses_…`) | resolved from canonical ServerSync info or `client.session.get`; without it, the route selects the most-recent unarchived root; first prompt creates a session and replaces the query value |
 
 URL builders (single source of truth, `utils/session-route.ts`): `sessionHref` (line 5) →
@@ -68,6 +69,11 @@ dispatches between them.
 /agentic?session=ses_… --[explicit target resolves via canonical info or client.session.get]--> attached live terminal
 /agentic --[no query → newest unarchived root]--> attached live terminal
 /agentic --[no sessions + first prompt → client.session.create]--> /agentic?session=ses_…
+any (both modes) --[command palette `agentic.open` → navigate("/agentic") (AgenticCommands, app.tsx:528-543, mounted inside SharedProviders' CommandProvider app.tsx:292 — moved 2026-07-19, SR-agentic-commands-context-provider)]--> /agentic
+any (legacy shell) --[titlebar terminal icon button (components/titlebar.tsx:662-668; legacy titlebar branch; shown when projects exist)]--> /agentic
+any (v2 shell) --[titlebar AgenticNavEntryV2 terminal icon button (components/titlebar.tsx:492, def :739; v2 Match branch, unconditional — added 2026-07-19, SR-v2-titlebar-nav-entry)]--> /agentic
+any (legacy shell) --[sidebar rail terminal IconButton (pages/layout/sidebar-shell.tsx:95-104, wired agenticLabel/onOpenAgentic at pages/layout.tsx:2237-2238)]--> /agentic
+any (desktop) --[View menu "Agentic Terminal" (desktop-menu.ts:148) → command.trigger("agentic.open"): macOS native menu (desktop/src/main/menu.ts:45-48 → renderer/index.tsx:366) or in-app Windows/Linux menu (components/windows-app-menu.tsx:28-41)]--> /agentic
 / (NewHome) --[session card click → tabs.addSessionTab+select (home.tsx:529-535) → navigate(tabHref) (tabs.tsx:152-154)]--> /server/:serverKey/session/:id
 / (NewHome) --[new-draft action → tabs.newDraft (home.tsx:494) → navigate(draftHref) (tabs.tsx:221)]--> /new-session?draftId=…
 / (NewHome) --[pending-session resolution → navigate(pending.href) (home.tsx:454)]--> /server/:serverKey/session/:id
@@ -85,24 +91,25 @@ legacy shell --[project/worktree actions → navigate(`/${base64(dir)}…`) (pag
 
 ## Entry Conditions
 
-- **Every route** sits behind `ConnectionGate` (`app.tsx:544`, def `387-456`): a blocking startup
-  health check (`useCheckServerHealth`, 10s timeout, `app.tsx:395-412`). Failure renders
+- **Every route** sits behind `ConnectionGate` (`app.tsx:574`, def `400-469`): a blocking startup
+  health check (`useCheckServerHealth`, 10s timeout, `app.tsx:408-425`). Failure renders
   `ConnectionError` **in place** (no route change) with auto-retry every 1s and a server-switch list
-  (`app.tsx:458-503`); while checking, a full-screen `Splash` overlay (`app.tsx:449-453`).
+  (`app.tsx:471-516`); while checking, a full-screen `Splash` overlay (`app.tsx:462-466`).
   **Qualifier — the gate is inert on web (fleet-confirmed, INTEGRATION_MAP #11):** the web entry
   passes `disableHealthCheck` (`entry.tsx:175`), which short-circuits the health-check resource to
-  `true` (`app.tsx:395-397`), so the blocking check + `ConnectionError` screen apply in practice to
+  `true` (`app.tsx:408-410`), so the blocking check + `ConnectionError` screen apply in practice to
   the desktop (sidecar) entry only; web/dev/Playwright sessions never see them.
 - **Mode-gated registration**: `/` + `/server/:serverKey/session/:id` (legacy versions) exist only when
-  `!newLayoutDesigns()` (`app.tsx:582-589`); `NewHome` / redirect / `TargetSessionRoute` only when it's
-  on (`app.tsx:595-599`). Toggling remounts the entire router (keyed `Show`, `app.tsx:545`).
+  `!newLayoutDesigns()` (`app.tsx:613-620`); `NewHome` / new `/agentic` / redirect / `TargetSessionRoute`
+  only when it's on (`app.tsx:629-634`); legacy `/agentic` in its own `Show` (`app.tsx:626-628`).
+  Toggling remounts the entire router (keyed `Show`, `app.tsx:575`).
 - **`/server/:serverKey/...`**: `requireServerKey` throws on a malformed key (`utils/session-route.ts:13-17`)
-  → caught by the `AppBaseProviders` `ErrorBoundary` → `ErrorPage` (`app.tsx:364-369`). An unknown-but-valid
-  key yields an undefined connection memo (`app.tsx:103-106`) — providers get `server=undefined`.
+  → caught by the `AppBaseProviders` `ErrorBoundary` → `ErrorPage` (`app.tsx:377-381`). An unknown-but-valid
+  key yields an undefined connection memo (`app.tsx:104-107`) — providers get `server=undefined`.
 - **`/new-session`**: requires `tabs.ready()` and a draft tab matching `?draftId`, else `Navigate → /`
-  (`app.tsx:180-185`); requires new layout, else redirected to the legacy composer (`app.tsx:187-190`).
+  (`app.tsx:181-186`); requires new layout, else redirected to the legacy composer (`app.tsx:188-191`).
 - **Server-scoped routes** are additionally gated on a non-null selected `server.key` by `ServerKey`
-  (`app.tsx:505-512`) inside `SelectedServerProviders` (`app.tsx:157-165`).
+  (`app.tsx:518-525`) inside `SelectedServerProviders` (`app.tsx:158-166`).
 
 ## Provider Nesting (what a route gets for free — and the event-stream consequence)
 
@@ -111,10 +118,10 @@ Outer shell for all routes (`entry.tsx:167-181` web / `desktop/src/renderer/inde
 ```
 PlatformProvider → AppBaseProviders (MetaProvider → Font → ThemeProvider → LanguageProvider →
   ErrorBoundary → QueryProvider → WslServersProvider → DialogProvider → MarkedProvider →
-  FileComponentProvider)                                          app.tsx:353-385
+  FileComponentProvider)                                          app.tsx:366-398
 → AppInterface: ServerProvider → GlobalProvider → SettingsProvider → ConnectionGate
-  → Router root: TabsProvider → PermissionProvider → NotificationProvider → ServerShell
-    (QueryProvider → SharedProviders: CommandProvider + HighlightsProvider)  app.tsx:527-560
+  → Router root: TabsProvider → PermissionProvider → NotificationProvider
+    → ServerShell (QueryProvider → SharedProviders: CommandProvider [DesktopCommands + AgenticCommands, app.tsx:291-292] + HighlightsProvider)  app.tsx:566-595
 ```
 
 Then per mode:
@@ -157,7 +164,7 @@ overlays.
 |---|---|---|
 | `sdk().event.on("session.status")` usage-limit statuses | usage-exceeded dialogs | `pages/session/usage-exceeded-dialogs.tsx:54` |
 | `permission.asked` events | permission prompt UI | `context/permission.tsx:322` |
-| Command palette hotkey / commands registered via `CommandProvider` | command palette | `context/command.tsx` (registered `app.tsx:290-303`) |
+| Command palette hotkey / commands registered via `CommandProvider` | command palette | `context/command.tsx` (`CommandProvider` mounted `app.tsx:290`; `DesktopCommands` `app.tsx:298-319`; `AgenticCommands` registers `agentic.open` → `/agentic`, `app.tsx:527-542`) |
 | Titlebar/help buttons in new shell | `TabsInfoPopup`, `HelpButton` popover | `pages/layout-new.tsx:40-41` |
 | File viewer/panels inside session view | side panels, review panel, terminal panel (layout state, not URL) | `pages/session/*` (`review-panel-v2.tsx`, `terminal-panel-v2.tsx`) |
 
@@ -219,7 +226,7 @@ legacy-shell routes; `/new-session`'s own pair). From `context/global-sync/boots
 ## Completeness notes
 
 - Route registrations, redirects, and URL builders above are exhaustive for `packages/app` — the only
-  `<Route>` elements in the codebase's mounted router are in `app.tsx:572-603` (`Routes`), and all
+  `<Route>` elements in the codebase's mounted router are in `app.tsx:603-638` (`Routes`), and all
   `Navigate`/`navigate(` sites in `app.tsx`, `context/tabs.tsx`, `pages/home.tsx` were enumerated.
   `pages/layout.tsx` (legacy shell, 1800+ lines) and `pages/session.tsx` internals were sampled at the
   cited lines rather than exhaustively traced; their additional in-page navigations stay within the
@@ -228,3 +235,11 @@ legacy-shell routes; `/new-session`'s own pair). From `context/global-sync/boots
   same `AgenticTerminalRoute` surface/provider contract in both. Its optional `?session` selector,
   create-on-first-prompt navigation, SDK calls, and event subscriptions are included above. Companion
   implemented-state visual record: `docs/DESIGN_MAP.md`.
+- **Chrome entry points to `/agentic`** (added 2026-07-19, desktop-chrome reachability change): four
+  routes in (see Navigation Web) — command palette `agentic.open` (both modes), desktop View menu
+  (both modes; native macOS + in-app Windows/Linux menu), the legacy titlebar terminal button, and the
+  legacy sidebar-rail terminal button. Note the two pointer-visible chrome buttons exist **only in the
+  legacy layout**: the v2 titlebar branch (`titlebar.tsx:252-536`) has no agentic button, and
+  `SidebarContent` is consumed only by the legacy shell (`pages/layout.tsx:2222`). In the new layout,
+  discoverability is palette/menu/URL only. Covered by
+  `packages/app/e2e/agentic-terminal/chrome-reachability.spec.ts`.

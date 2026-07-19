@@ -1,0 +1,181 @@
+
+13:58:12.776 (crash) > crash reporter started {
+  path: 'C:\\Users\\Paul\\AppData\\Roaming\\ai.opencode.desktop.dev\\Crashpad'
+}
+13:58:12.792         > app starting { version: '1.18.2', packaged: true, onboardingTest: false }
+13:58:12.847         > tauri migration: already done, skipping
+13:58:12.865         > auto updater configured {
+  channel: 'latest',
+  allowPrerelease: false,
+  allowDowngrade: true,
+  currentVersion: '1.18.2'
+}
+13:58:12.914 (network) > net log started {
+  path: 'C:\\Users\\Paul\\AppData\\Roaming\\ai.opencode.desktop.dev\\logs\\20260719T185812\\network.netlog'
+}
+13:58:12.932           > sidecar connection started { url: 'http://127.0.0.1:63900' }
+13:58:12.933           > spawning sidecar { url: 'http://127.0.0.1:63900' }
+13:58:14.189           > loading task finished
+13:58:14.625           > awaiting server ready
+13:58:14.626           > server ready { url: 'http://127.0.0.1:63900' }
+13:58:14.762 (onboarding) > first launch onboarding pending checked { pending: true }
+13:58:14.769              > [desktop-onboarding] first launch onboarding evaluated [object Object]
+13:58:14.771 (onboarding) > first launch onboarding pending checked { pending: true }
+13:58:14.780 (onboarding) > first launch onboarding completed {
+  createDefaultProject: true,
+  defaultProject: 'C:\\Users\\Paul\\Documents\\Default Project'
+}
+13:58:14.781              > [desktop-onboarding] starting first launch draft [object Object]
+
+13:59:00.907 (crash) > crash reporter started {
+  path: 'C:\\Users\\Paul\\AppData\\Roaming\\ai.opencode.desktop.dev\\Crashpad'
+}
+13:59:00.924         > app starting { version: '1.18.2', packaged: true, onboardingTest: false }
+13:59:00.973         > tauri migration: already done, skipping
+13:59:00.984         > auto updater configured {
+  channel: 'latest',
+  allowPrerelease: false,
+  allowDowngrade: true,
+  currentVersion: '1.18.2'
+}
+13:59:01.036 (network) > net log started {
+  path: 'C:\\Users\\Paul\\AppData\\Roaming\\ai.opencode.desktop.dev\\logs\\20260719T185900\\network.netlog'
+}
+13:59:01.057           > sidecar connection started { url: 'http://127.0.0.1:65070' }
+13:59:01.058           > spawning sidecar { url: 'http://127.0.0.1:65070' }
+13:59:02.176           > loading task finished
+13:59:02.552           > awaiting server ready
+13:59:02.553           > server ready { url: 'http://127.0.0.1:65070' }
+13:59:02.692 (onboarding) > first launch onboarding pending checked { pending: false }
+
+13:59:51.408 (crash) > crash reporter started {
+  path: 'C:\\Users\\Paul\\AppData\\Roaming\\ai.opencode.desktop.dev\\Crashpad'
+}
+13:59:51.434         > app starting { version: '1.18.2', packaged: true, onboardingTest: false }
+13:59:51.525         > tauri migration: already done, skipping
+13:59:51.552         > auto updater configured {
+  channel: 'latest',
+  allowPrerelease: false,
+  allowDowngrade: true,
+  currentVersion: '1.18.2'
+}
+13:59:51.669 (network) > net log started {
+  path: 'C:\\Users\\Paul\\AppData\\Roaming\\ai.opencode.desktop.dev\\logs\\20260719T185951\\network.netlog'
+}
+13:59:51.695           > sidecar connection started { url: 'http://127.0.0.1:58208' }
+13:59:51.696           > spawning sidecar { url: 'http://127.0.0.1:58208' }
+13:59:54.243           > loading task finished
+13:59:54.855           > awaiting server ready
+13:59:54.856           > server ready { url: 'http://127.0.0.1:58208' }
+13:59:55.017 (onboarding) > first launch onboarding pending checked { pending: false }
+
+14:00:04.790 (crash) > crash reporter started {
+  path: 'C:\\Users\\Paul\\AppData\\Roaming\\ai.opencode.desktop.dev\\Crashpad'
+}
+14:00:04.806         > app starting { version: '1.18.2', packaged: true, onboardingTest: false }
+14:00:04.857         > tauri migration: already done, skipping
+14:00:04.869         > auto updater configured {
+  channel: 'latest',
+  allowPrerelease: false,
+  allowDowngrade: true,
+  currentVersion: '1.18.2'
+}
+14:00:04.909 (network) > net log started {
+  path: 'C:\\Users\\Paul\\AppData\\Roaming\\ai.opencode.desktop.dev\\logs\\20260719T190004\\network.netlog'
+}
+14:00:04.928           > sidecar connection started { url: 'http://127.0.0.1:53066' }
+14:00:04.929           > spawning sidecar { url: 'http://127.0.0.1:53066' }
+14:00:06.067           > loading task finished
+14:00:06.427           > awaiting server ready
+14:00:06.428           > server ready { url: 'http://127.0.0.1:53066' }
+14:00:06.562 (onboarding) > first launch onboarding pending checked { pending: false }
+
+14:01:10.459 (crash) > crash reporter started {
+  path: 'C:\\Users\\Paul\\AppData\\Roaming\\ai.opencode.desktop.dev\\Crashpad'
+}
+14:01:10.475         > app starting { version: '1.18.2', packaged: true, onboardingTest: false }
+14:01:10.521         > tauri migration: already done, skipping
+14:01:10.531         > auto updater configured {
+  channel: 'latest',
+  allowPrerelease: false,
+  allowDowngrade: true,
+  currentVersion: '1.18.2'
+}
+14:01:10.573 (network) > net log started {
+  path: 'C:\\Users\\Paul\\AppData\\Roaming\\ai.opencode.desktop.dev\\logs\\20260719T190110\\network.netlog'
+}
+14:01:10.591           > sidecar connection started { url: 'http://127.0.0.1:64455' }
+14:01:10.592           > spawning sidecar { url: 'http://127.0.0.1:64455' }
+14:01:11.712           > loading task finished
+14:01:12.082           > awaiting server ready
+14:01:12.083           > server ready { url: 'http://127.0.0.1:64455' }
+14:01:12.193 (onboarding) > first launch onboarding pending checked { pending: false }
+
+14:01:29.249 (crash) > crash reporter started {
+  path: 'C:\\Users\\Paul\\AppData\\Roaming\\ai.opencode.desktop.dev\\Crashpad'
+}
+14:01:29.264         > app starting { version: '1.18.2', packaged: true, onboardingTest: false }
+14:01:29.308         > tauri migration: already done, skipping
+14:01:29.320         > auto updater configured {
+  channel: 'latest',
+  allowPrerelease: false,
+  allowDowngrade: true,
+  currentVersion: '1.18.2'
+}
+14:01:29.357 (network) > net log started {
+  path: 'C:\\Users\\Paul\\AppData\\Roaming\\ai.opencode.desktop.dev\\logs\\20260719T190129\\network.netlog'
+}
+14:01:29.373           > sidecar connection started { url: 'http://127.0.0.1:57416' }
+14:01:29.374           > spawning sidecar { url: 'http://127.0.0.1:57416' }
+14:01:30.466           > loading task finished
+14:01:30.829           > awaiting server ready
+14:01:30.830           > server ready { url: 'http://127.0.0.1:57416' }
+14:01:30.927 (onboarding) > first launch onboarding pending checked { pending: false }
+14:01:37.070              > awaiting server ready
+14:01:37.071              > server ready { url: 'http://127.0.0.1:57416' }
+14:01:37.347 (onboarding) > first launch onboarding pending checked { pending: false }
+
+14:03:02.221 (crash) > crash reporter started {
+  path: 'C:\\Users\\Paul\\AppData\\Roaming\\ai.opencode.desktop.dev\\Crashpad'
+}
+14:03:02.236         > app starting { version: '1.18.2', packaged: true, onboardingTest: false }
+14:03:02.282         > tauri migration: already done, skipping
+14:03:02.293         > auto updater configured {
+  channel: 'latest',
+  allowPrerelease: false,
+  allowDowngrade: true,
+  currentVersion: '1.18.2'
+}
+14:03:02.330 (network) > net log started {
+  path: 'C:\\Users\\Paul\\AppData\\Roaming\\ai.opencode.desktop.dev\\logs\\20260719T190302\\network.netlog'
+}
+14:03:02.348           > sidecar connection started { url: 'http://127.0.0.1:49920' }
+14:03:02.349           > spawning sidecar { url: 'http://127.0.0.1:49920' }
+14:03:03.413           > loading task finished
+14:03:03.750           > awaiting server ready
+14:03:03.750           > server ready { url: 'http://127.0.0.1:49920' }
+14:03:03.858 (onboarding) > first launch onboarding pending checked { pending: false }
+
+14:03:20.984 (crash) > crash reporter started {
+  path: 'C:\\Users\\Paul\\AppData\\Roaming\\ai.opencode.desktop.dev\\Crashpad'
+}
+14:03:21.001         > app starting { version: '1.18.2', packaged: true, onboardingTest: false }
+14:03:21.053         > tauri migration: already done, skipping
+14:03:21.066         > auto updater configured {
+  channel: 'latest',
+  allowPrerelease: false,
+  allowDowngrade: true,
+  currentVersion: '1.18.2'
+}
+14:03:21.110 (network) > net log started {
+  path: 'C:\\Users\\Paul\\AppData\\Roaming\\ai.opencode.desktop.dev\\logs\\20260719T190320\\network.netlog'
+}
+14:03:21.130           > sidecar connection started { url: 'http://127.0.0.1:60038' }
+14:03:21.131           > spawning sidecar { url: 'http://127.0.0.1:60038' }
+14:03:22.399           > loading task finished
+14:03:22.800           > awaiting server ready
+14:03:22.800           > server ready { url: 'http://127.0.0.1:60038' }
+14:03:22.922 (onboarding) > first launch onboarding pending checked { pending: false }
+14:03:28.976              > awaiting server ready
+14:03:28.977              > server ready { url: 'http://127.0.0.1:60038' }
+14:03:29.024 (onboarding) > first launch onboarding pending checked { pending: false }

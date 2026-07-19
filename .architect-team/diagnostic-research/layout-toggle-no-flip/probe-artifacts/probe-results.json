@@ -1,0 +1,146 @@
+{
+  "A_asFailingTest_seedEveryLoad": {
+    "scenario": "A-as-failing-test",
+    "consoleErrors": [
+      "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+      "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+      "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+      "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+      "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+      "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+      "[global-sdk] event stream error {url: http://localhost:4096, fetch: webview, error: TypeError: Failed to fetch\n    at customFetch (http://127.0.0.1:3000/@fs/C:/Users/Paul/Documents/te…}",
+      "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+      "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+      "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+      "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+      "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+      "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+      "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+      "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+      "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+      "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+      "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+      "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+      "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+      "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+      "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+      "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+      "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+      "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+      "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+      "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+      "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+      "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+      "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+      "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+      "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+      "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+      "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+      "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+      "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+      "Failed to load resource: net::ERR_CONNECTION_REFUSED"
+    ],
+    "pageErrors": [],
+    "loads": [
+      {
+        "url": "http://127.0.0.1:3000/",
+        "t": 1784480811472
+      },
+      {
+        "url": "http://127.0.0.1:3000/",
+        "t": 1784480812391
+      },
+      {
+        "url": "http://127.0.0.1:3000/",
+        "t": 1784480813802
+      }
+    ],
+    "preClick": {
+      "ariaChecked": "false",
+      "settingsV3": "{\"general\":{\"autoSave\":true,\"releaseNotes\":true,\"followup\":\"steer\",\"showFileTree\":false,\"showNavigation\":false,\"showSearch\":false,\"showStatus\":false,\"showTerminal\":false,\"showReasoningSummaries\":false,\"shellToolPartsExpanded\":false,\"editToolPartsExpanded\":false,\"showCustomAgents\":false,\"mobileTitlebarPosition\":\"top\",\"newLayoutDesigns\":false,\"layoutTransitionEligible\":true,\"shouldDisplayTabsToast\":false},\"appearance\":{\"fontSize\":14,\"mono\":\"\",\"sans\":\"\",\"terminal\":\"\"},\"keybinds\":{},\"permissions\":{\"autoApprove\":false},\"notifications\":{\"agent\":true,\"permissions\":true,\"errors\":false},\"sounds\":{\"agentEnabled\":true,\"agent\":\"staplebops-01\",\"permissionsEnabled\":true,\"permissions\":\"staplebops-02\",\"errorsEnabled\":true,\"errors\":\"nope-03\"}}"
+    },
+    "immediatePostClick": {
+      "t": 174,
+      "ariaChecked": "<race:TimeoutError: locator.getAttribute: Timeout 500ms exceeded.\nCall log:\n\u001b[2m  - wa>",
+      "settingsV3": "{\"general\":{\"newLayoutDesigns\":false,\"layoutTransitionEligible\":true}}"
+    },
+    "titlebarV2AppearedWithin20s": false,
+    "final": {
+      "href": "http://127.0.0.1:3000/",
+      "settingsV3": "{\"general\":{\"autoSave\":true,\"releaseNotes\":true,\"followup\":\"steer\",\"showFileTree\":false,\"showNavigation\":false,\"showSearch\":false,\"showStatus\":false,\"showTerminal\":false,\"showReasoningSummaries\":false,\"shellToolPartsExpanded\":false,\"editToolPartsExpanded\":false,\"showCustomAgents\":false,\"mobileTitlebarPosition\":\"top\",\"newLayoutDesigns\":false,\"layoutTransitionEligible\":true,\"shouldDisplayTabsToast\":false},\"appearance\":{\"fontSize\":14,\"mono\":\"\",\"sans\":\"\",\"terminal\":\"\"},\"keybinds\":{},\"permissions\":{\"autoApprove\":false},\"notifications\":{\"agent\":true,\"permissions\":true,\"errors\":false},\"sounds\":{\"agentEnabled\":true,\"agent\":\"staplebops-01\",\"permissionsEnabled\":true,\"permissions\":\"staplebops-02\",\"errorsEnabled\":true,\"errors\":\"nope-03\"}}",
+      "appVersion": "{\"version\":\"1.18.2\"}",
+      "bootLog": [
+        {
+          "href": "http://127.0.0.1:3000/",
+          "t": 1784480811476,
+          "settingsV3_preSeed": null,
+          "appVersion_preSeed": null
+        },
+        {
+          "href": "http://127.0.0.1:3000/",
+          "t": 1784480813804,
+          "settingsV3_preSeed": "{\"general\":{\"autoSave\":true,\"releaseNotes\":true,\"followup\":\"steer\",\"showFileTree\":false,\"showNavigation\":false,\"showSearch\":false,\"showStatus\":false,\"showTerminal\":false,\"showReasoningSummaries\":false,\"shellToolPartsExpanded\":false,\"editToolPartsExpanded\":false,\"showCustomAgents\":false,\"mobileTitlebarPosition\":\"top\",\"newLayoutDesigns\":true,\"layoutTransitionEligible\":true,\"shouldDisplayTabsToast\":false},\"appearance\":{\"fontSize\":14,\"mono\":\"\",\"sans\":\"\",\"terminal\":\"\"},\"keybinds\":{},\"permissions\":{\"autoApprove\":false},\"notifications\":{\"agent\":true,\"permissions\":true,\"errors\":false},\"sounds\":{\"agentEnabled\":true,\"agent\":\"staplebops-01\",\"permissionsEnabled\":true,\"permissions\":\"staplebops-02\",\"errorsEnabled\":true,\"errors\":\"nope-03\"}}",
+          "appVersion_preSeed": "{\"version\":\"1.18.2\"}"
+        }
+      ],
+      "titlebarV2SeenAt": null,
+      "titlebarV2NowInDom": false,
+      "legacySidebarNowInDom": true,
+      "dialogOpenCount": 0,
+      "switchInDom": false
+    }
+  },
+  "B_realUser_seedOnce": {
+    "scenario": "B-real-user-counterfactual",
+    "consoleErrors": [],
+    "pageErrors": [],
+    "loads": [
+      {
+        "url": "http://127.0.0.1:3000/",
+        "t": 1784480834446
+      },
+      {
+        "url": "http://127.0.0.1:3000/",
+        "t": 1784480835244
+      },
+      {
+        "url": "http://127.0.0.1:3000/",
+        "t": 1784480835786
+      }
+    ],
+    "preClick": {
+      "ariaChecked": "false",
+      "settingsV3": "{\"general\":{\"autoSave\":true,\"releaseNotes\":true,\"followup\":\"steer\",\"showFileTree\":false,\"showNavigation\":false,\"showSearch\":false,\"showStatus\":false,\"showTerminal\":false,\"showReasoningSummaries\":false,\"shellToolPartsExpanded\":false,\"editToolPartsExpanded\":false,\"showCustomAgents\":false,\"mobileTitlebarPosition\":\"top\",\"newLayoutDesigns\":false,\"layoutTransitionEligible\":true,\"shouldDisplayTabsToast\":false},\"appearance\":{\"fontSize\":14,\"mono\":\"\",\"sans\":\"\",\"terminal\":\"\"},\"keybinds\":{},\"permissions\":{\"autoApprove\":false},\"notifications\":{\"agent\":true,\"permissions\":true,\"errors\":false},\"sounds\":{\"agentEnabled\":true,\"agent\":\"staplebops-01\",\"permissionsEnabled\":true,\"permissions\":\"staplebops-02\",\"errorsEnabled\":true,\"errors\":\"nope-03\"}}"
+    },
+    "immediatePostClick": {
+      "t": 124,
+      "ariaChecked": "<race:TimeoutError: locator.getAttribute: Timeout 500ms exceeded.\nCall log:\n\u001b[2m  - wa>",
+      "settingsV3": "{\"general\":{\"autoSave\":true,\"releaseNotes\":true,\"followup\":\"steer\",\"showFileTree\":false,\"showNavigation\":false,\"showSearch\":false,\"showStatus\":false,\"showTerminal\":false,\"showReasoningSummaries\":false,\"shellToolPartsExpanded\":false,\"editToolPartsExpanded\":false,\"showCustomAgents\":false,\"mobileTitlebarPosition\":\"top\",\"newLayoutDesigns\":true,\"layoutTransitionEligible\":true,\"shouldDisplayTabsToast\":false},\"appearance\":{\"fontSize\":14,\"mono\":\"\",\"sans\":\"\",\"terminal\":\"\"},\"keybinds\":{},\"permissions\":{\"autoApprove\":false},\"notifications\":{\"agent\":true,\"permissions\":true,\"errors\":false},\"sounds\":{\"agentEnabled\":true,\"agent\":\"staplebops-01\",\"permissionsEnabled\":true,\"permissions\":\"staplebops-02\",\"errorsEnabled\":true,\"errors\":\"nope-03\"}}"
+    },
+    "titlebarV2AppearedWithin20s": true,
+    "final": {
+      "href": "http://127.0.0.1:3000/",
+      "settingsV3": "{\"general\":{\"autoSave\":true,\"releaseNotes\":true,\"followup\":\"steer\",\"showFileTree\":false,\"showNavigation\":false,\"showSearch\":false,\"showStatus\":false,\"showTerminal\":false,\"showReasoningSummaries\":false,\"shellToolPartsExpanded\":false,\"editToolPartsExpanded\":false,\"showCustomAgents\":false,\"mobileTitlebarPosition\":\"top\",\"newLayoutDesigns\":true,\"layoutTransitionEligible\":true,\"shouldDisplayTabsToast\":false},\"appearance\":{\"fontSize\":14,\"mono\":\"\",\"sans\":\"\",\"terminal\":\"\"},\"keybinds\":{},\"permissions\":{\"autoApprove\":false},\"notifications\":{\"agent\":true,\"permissions\":true,\"errors\":false},\"sounds\":{\"agentEnabled\":true,\"agent\":\"staplebops-01\",\"permissionsEnabled\":true,\"permissions\":\"staplebops-02\",\"errorsEnabled\":true,\"errors\":\"nope-03\"}}",
+      "appVersion": "{\"version\":\"1.18.2\"}",
+      "bootLog": [
+        {
+          "href": "http://127.0.0.1:3000/",
+          "t": 1784480834448,
+          "settingsV3_preSeed": null,
+          "appVersion_preSeed": null
+        },
+        {
+          "href": "http://127.0.0.1:3000/",
+          "t": 1784480835788,
+          "settingsV3_preSeed": "{\"general\":{\"autoSave\":true,\"releaseNotes\":true,\"followup\":\"steer\",\"showFileTree\":false,\"showNavigation\":false,\"showSearch\":false,\"showStatus\":false,\"showTerminal\":false,\"showReasoningSummaries\":false,\"shellToolPartsExpanded\":false,\"editToolPartsExpanded\":false,\"showCustomAgents\":false,\"mobileTitlebarPosition\":\"top\",\"newLayoutDesigns\":true,\"layoutTransitionEligible\":true,\"shouldDisplayTabsToast\":false},\"appearance\":{\"fontSize\":14,\"mono\":\"\",\"sans\":\"\",\"terminal\":\"\"},\"keybinds\":{},\"permissions\":{\"autoApprove\":false},\"notifications\":{\"agent\":true,\"permissions\":true,\"errors\":false},\"sounds\":{\"agentEnabled\":true,\"agent\":\"staplebops-01\",\"permissionsEnabled\":true,\"permissions\":\"staplebops-02\",\"errorsEnabled\":true,\"errors\":\"nope-03\"}}",
+          "appVersion_preSeed": "{\"version\":\"1.18.2\"}"
+        }
+      ],
+      "titlebarV2SeenAt": null,
+      "titlebarV2NowInDom": true,
+      "legacySidebarNowInDom": false,
+      "dialogOpenCount": 0,
+      "switchInDom": false
+    }
+  }
+}

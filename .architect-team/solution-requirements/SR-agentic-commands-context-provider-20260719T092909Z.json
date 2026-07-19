@@ -1,0 +1,49 @@
+{
+  "id": "SR-agentic-commands-context-provider-20260719T092909Z",
+  "status": "resolved",
+  "origin": {
+    "kind": "integration-test-failure",
+    "detail": "Packaged Windows exe (packages/desktop/dist/win-unpacked/OpenCode Dev.exe, build of dad0fff112 + group-1/2/3 reachability changes) crashes the renderer on boot with a fatal error: 'Error: Command context must be used within a context provider' thrown from AgenticCommands at packages/app/src/app.tsx:528 (useCommand()). The entire app never loads \u2014 it shows the fatal-error screen ('Something went wrong / An error occurred while loading the application'). Captured via CDP attach to the live packaged exe (exe-smoke debug run). Exe stdout/stderr logs at .architect-team/verification-notes/exe-smoke/artifacts/inspect-stderr.log and inspect-stdout.log."
+  },
+  "summary": "AgenticCommands (packages/app/src/app.tsx:527-542) is mounted OUTSIDE the CommandProvider context, so useCommand() throws on renderer boot and crashes the packaged desktop app. The web e2e build did not surface this because the web harness mounts AppInterface with a different provider ordering / the failure is timing-sensitive in dev HMR; the packaged production renderer (minified, no HMR) throws synchronously and fatal-errors.",
+  "acceptance_criteria": [
+    "The packaged Windows exe boots to the OpenCode app (no fatal-error screen) with AgenticCommands registered inside the CommandProvider context",
+    "useCommand() in AgenticCommands resolves without throwing 'Command context must be used within a context provider'",
+    "Desktop smoke checklist \u00a71-6 can execute against the packaged exe (currently blocked entirely by this crash)",
+    "The fix does not regress the web e2e suite (packages/app/e2e/agentic-terminal/) or the app unit suite"
+  ],
+  "affected_requirements": [
+    "SRC-7",
+    "SRC-8"
+  ],
+  "scope": {
+    "files_to_change": [
+      "packages/app/src/app.tsx (move <AgenticCommands /> from line 582 \u2014 sibling of ServerShell, OUTSIDE CommandProvider \u2014 to INSIDE SharedProviders/CommandProvider next to <DesktopCommands /> at line 291; OR wrap AgenticCommands in its own CommandProvider; the former is correct since SharedProviders is rendered inside the router root via ServerShell so useNavigate still resolves)"
+    ]
+  },
+  "root_cause_analysis": "CommandProvider is mounted in SharedProviders (app.tsx:290), which is rendered via ServerShell (app.tsx:557-563) INSIDE the router root. AgenticCommands is mounted at app.tsx:582 as a SIBLING of <ServerShell> (line 583), i.e. OUTSIDE SharedProviders and therefore OUTSIDE CommandProvider. The sibling DesktopCommands (app.tsx:298) works because it is rendered INSIDE CommandProvider (app.tsx:291). AgenticCommands calls useCommand() at app.tsx:528 which requires the CommandProvider context; without it, solid's useContext throws. Note: AgenticCommands also calls useNavigate() (app.tsx:530), which requires the router context \u2014 SharedProviders/ServerShell is inside the router root, so moving AgenticCommands into CommandProvider within SharedProviders satisfies both contexts. Recommended fix: add <AgenticCommands /> inside <CommandProvider> in SharedProviders (e.g. after <DesktopCommands /> at line 291) and remove it from line 582. This keeps it inside BOTH CommandProvider and the router (SharedProviders renders inside the router root).",
+  "why_unit_tests_missed_it": "packages/app/src/app.test.tsx does NOT render AgenticCommands or the AppInterface tree at all \u2014 it only asserts the DESKTOP_MENU model contains the agentic.open entry (a pure data check against the imported DESKTOP_MENU constant). The component-mount/context-provider crash is therefore unreachable from the unit suite. The web e2e (chrome-reachability.spec.ts) drives the dev server (HMR, unminified) where the throw is apparently tolerated or recovered differently; the packaged production renderer (minified, no HMR) throws synchronously and fatal-errors. This is the unit/integration gap the packaged-exe smoke step exists to close.",
+  "suggested_team": "frontend",
+  "blocking": true,
+  "blocks_checklist_items": [
+    "\u00a71",
+    "\u00a72",
+    "\u00a73",
+    "\u00a74",
+    "\u00a75",
+    "\u00a76"
+  ],
+  "evidence": {
+    "fatal_log": ".architect-team/verification-notes/exe-smoke/artifacts/inspect-stderr.log",
+    "exe_stdout": ".architect-team/verification-notes/exe-smoke/artifacts/inspect-stdout.log",
+    "screenshot": ".architect-team/verification-notes/exe-smoke/artifacts/inspect-initial.png",
+    "source_location": "packages/app/src/app.tsx:527-542 (definition), :582 (mount site, outside CommandProvider at :290)"
+  },
+  "diagnostic_plan_path": ".architect-team/diagnostic-research/agentic-commands-context/diagnostic-plan-20260719T1010Z.md",
+  "diagnostic_research_completed_at": "2026-07-19T10:14:00Z",
+  "spawned_teammate": "frontend-context-fix",
+  "spawned_at": "2026-07-19T10:15:00Z",
+  "resolved_at": "2026-07-19T14:20:00Z",
+  "resolved_by": "pending-commit (branch architect-team/agentic-terminal-desktop-app)",
+  "resolution_note": "RESOLVED: mount moved inside SharedProviders CommandProvider (app.tsx:292, plan site-i); packaged exe REBUILT and smoke-verified \u2014 boots clean, ZERO console errors (smoke2 item 6c), /agentic renders live (6a/6b), menu + v2 entry + relaunch restore pass. Web: 4/4 chrome e2e + 22/22 suite (independent reviewer). Unit: 9/9 incl. structural fences. Reviews: 9-independent pass; 9-adversarial attack-3 gap remediated (fence tests + evidence honesty correction)."
+}

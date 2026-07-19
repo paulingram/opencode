@@ -1,0 +1,18 @@
+{
+  "schema_version": 7,
+  "teammate": "frontend-exe-verification",
+  "spawned_at": "2026-07-19T08:49:00Z",
+  "task_ids": ["7"],
+  "tasks_md_items": ["5.1", "5.2", "5.3", "5.4", "5.5"],
+  "layer": "infra+frontend",
+  "files_owned": [
+    ".architect-team/verification-notes/exe-smoke/**",
+    ".architect-team/verification-notes/desktop-smoke-checklist.md"
+  ],
+  "product_code_policy": "READ-ONLY on packages/** and all product files; any needed product change is surfaced as an SR under .architect-team/solution-requirements/, never edited directly",
+  "expected_review_evidence": ".architect-team/reviews/7.json",
+  "baseline_sha": "dad0fff112b928f7a6a3cb662fd6e3c739c3aaa1",
+  "deploy_mandate": { "active": false },
+  "appearance_mode": "strict",
+  "dispatch_mode": "teams"
+}

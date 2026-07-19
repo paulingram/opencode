@@ -1,0 +1,121 @@
+{
+  "driver": "cdp-smoke-2",
+  "exe": "C:/Users/Paul/Documents/terminus_maximus/.opencode-worktrees/agentic-terminal-desktop-app/packages/desktop/dist/win-unpacked/OpenCode Dev.exe",
+  "port": 9333,
+  "started_at": "2026-07-19T19:03:01.819Z",
+  "items": [
+    {
+      "id": "0a",
+      "name": "Fresh-profile boot layout",
+      "verdict": "pass",
+      "verified_by": "automated-cdp",
+      "detail": "boots in NEW layout (v2 titlebar) — matches first-launch upgrade product fact"
+    },
+    {
+      "id": "3a",
+      "name": "v2 titlebar shows Agentic Terminal button",
+      "verdict": "pass",
+      "verified_by": "automated-cdp",
+      "detail": "aria-label=\"Agentic Terminal\", count=1"
+    },
+    {
+      "id": "3e",
+      "name": "v2 entry click navigates to /agentic",
+      "verdict": "pass",
+      "verified_by": "automated-cdp",
+      "detail": "agentic-terminal testid visible; route=/agentic"
+    },
+    {
+      "id": "6a",
+      "name": "/agentic renders agentic terminal component",
+      "verdict": "pass",
+      "verified_by": "automated-cdp",
+      "detail": "testid visible, live in-process sidecar"
+    },
+    {
+      "id": "6b",
+      "name": "Component visible and interactive (children mounted)",
+      "verdict": "pass",
+      "verified_by": "automated-cdp",
+      "detail": "child testids: 3"
+    },
+    {
+      "id": "6c",
+      "name": "No console errors on init",
+      "verdict": "pass",
+      "verified_by": "automated-cdp",
+      "detail": "zero error-level console messages"
+    },
+    {
+      "id": "1b",
+      "name": "Windows in-app View menu contains Agentic Terminal",
+      "verdict": "pass",
+      "verified_by": "automated-cdp",
+      "detail": "item found"
+    },
+    {
+      "id": "1c",
+      "name": "Menu item activates /agentic",
+      "verdict": "pass",
+      "verified_by": "automated-cdp",
+      "detail": "route=/agentic"
+    },
+    {
+      "id": "1a",
+      "name": "macOS native View menu",
+      "verdict": "not-verified",
+      "verified_by": "not-verified",
+      "detail": "impossibility: no macOS native menu on a Windows-packaged exe (checklist follow-up on macOS)"
+    },
+    {
+      "id": "4a",
+      "name": "Palette lists Open Agentic Terminal",
+      "verdict": "not-verified",
+      "verified_by": "not-verified",
+      "detail": "precondition unavailable: palette opens only on session pages (file.open registration — product design); current exe page is not a session page. Flow verified GREEN at web-e2e layer (chrome-reachability test 1, real session page + real palette DOM)."
+    },
+    {
+      "id": "5-pre",
+      "name": "Route persisted before quit",
+      "verdict": "pass",
+      "verified_by": "automated-cdp",
+      "detail": "last-active-url=/agentic"
+    },
+    {
+      "id": "5a",
+      "name": "Relaunch restores /agentic (full URL incl. query)",
+      "verdict": "pass",
+      "verified_by": "automated-cdp",
+      "detail": "before=/agentic after=/agentic rendered=true"
+    },
+    {
+      "id": "5c",
+      "name": "?session= restore variant",
+      "verdict": "not-verified",
+      "verified_by": "not-verified",
+      "detail": "persisted URL carried no ?session= (no session auto-selected in this profile: /agentic); mechanism identical to 5a (same last-active-url guard, verified statically task 3.1)"
+    },
+    {
+      "id": "2-pre",
+      "name": "Seeded profile boots LEGACY layout",
+      "verdict": "fail",
+      "verified_by": "automated-cdp",
+      "detail": "v2 titlebar still present — seed did not take"
+    },
+    {
+      "id": "2a",
+      "name": "Legacy chrome shows Agentic Terminal entry(ies)",
+      "verdict": "not-verified",
+      "verified_by": "automated-cdp",
+      "detail": "seed did not produce legacy boot; see 2-pre"
+    },
+    {
+      "id": "6d",
+      "name": "Entry survives layout toggle",
+      "verdict": "not-verified",
+      "verified_by": "automated-cdp",
+      "detail": "blocked by 2-pre"
+    }
+  ],
+  "finished_at": "2026-07-19T19:03:35.081Z"
+}

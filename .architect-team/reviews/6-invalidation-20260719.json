@@ -1,0 +1,36 @@
+{
+  "schema_version": 7,
+  "record_type": "evidence_invalidation",
+  "created_at": "2026-07-19T09:50:00Z",
+  "created_by": "orchestrator (team-lead), from unanimous 3-researcher diagnostic convergence",
+  "invalidates": [".architect-team/reviews/6.json", ".architect-team/reviews/6-independent.json", ".architect-team/reviews/6-adversarial.json"],
+  "scope_of_invalidation": "PARTIAL — the historical files remain the record; the specific claims below are established false and MUST NOT be relied on by any downstream gate.",
+  "invalid_claims": [
+    {
+      "claim": "6.json: palette flow e2e verified / 'chrome-reachability.spec.ts (3 Playwright flows)' counted within the 658-test bun suite run",
+      "finding": "The e2e spec was authored and typechecked but NEVER EXECUTED: bun test scoped to ./src cannot run e2e/*.spec.ts; no test-results/ or playwright-report/ artifacts exist; the spec hardcodes port 5173 vs the harness's 3000; waits on a nonexistent data-testid ('agentic-terminal-root' vs actual 'agentic-terminal'); uses Ctrl+K which is not the palette bind outside session pages (default mod+shift+p).",
+      "evidence": "diagnostic-research/agentic-commands-context/researcher-1.md (live run), researcher-2.md §Q2(d), researcher-3.md H2"
+    },
+    {
+      "claim": "6.json: 'command registration verified in both layout modes' via app.test.tsx",
+      "finding": "app.test.tsx renders NO components — it is a pure DESKTOP_MENU data assertion; AgenticCommands was never mounted by any executed test.",
+      "evidence": "researcher-1.md, researcher-2.md §Q2(c)"
+    },
+    {
+      "claim": "6.json quality_review_note: AgenticCommands 'mount as sibling to HighlightsProvider inside CommandProvider'",
+      "finding": "That mount site never existed at any commit; the actual mount (app.tsx:582, sibling of ServerShell, OUTSIDE CommandProvider) fatally crashes web AND desktop renderers on boot (reproduced live on both).",
+      "evidence": "researcher-3.md H1/H2; exe-smoke artifacts inspect-stderr.log; researcher-1.md live web repro"
+    },
+    {
+      "claim": "6-independent.json: e2e coverage verified via 'npm run typecheck:e2e'",
+      "finding": "Typechecking a spec is not executing it; recorded as if it were execution evidence.",
+      "evidence": "researcher-1.md §Q2"
+    }
+  ],
+  "still_valid": "Menu-model assertions (desktop-menu.test.ts), i18n key coverage (21 locales), the DESKTOP_MENU entry itself, nav-entry code for the LEGACY layout (the v2-layout gap is SR-v2-titlebar-nav-entry), and the genuinely-executed unit-suite results for what those tests actually cover.",
+  "consequences": [
+    "SRC-2 (palette) acceptance re-verification REQUIRED via genuine red->green e2e execution after the fix",
+    "SRC-1 new-layout criterion re-verification handled under SR-v2-titlebar-nav-entry-20260719T0855Z",
+    "Phase 7 master review must treat 6.json's e2e claims as unverified pending the re-run"
+  ]
+}
